@@ -24,24 +24,35 @@ namespace Yet_another_tool
         private void tbl_create_Click(object sender, EventArgs e)
         {
             string path = "C:/Users/Артём/Desktop//Tables.xml";
-            
+
+            Table table = new Table();
+            table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text);
+
             if (File.Exists(path))
             {
                 MessageBox.Show("File 'Tables.xml' exists!");
+
+
             }
             else
             {
                 FileStream file = File.Create(path);
 
-                Table table = new Table();
-                table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text);
+                Table_list list = new Table_list();
+                list.TableList = new List<Table>();
+                list.TableList.Add(table);
 
-                Table[] tables = new Table[5];
-                tables[0] = table;
-
-                XmlSerializer x = new XmlSerializer(tables.GetType());
-                x.Serialize(file, tables);
+                XmlSerializer x = new XmlSerializer(list.GetType());
+                x.Serialize(file, list);
                 file.Close();
+
+                MessageBox.Show("Table is created: " + table.name + " : " + table.number);
+
+                tbl_name.Text = "";
+                tbl_num.Text = "";
+                tbl_id.Text = "";
+
+
             }
         }
     }
