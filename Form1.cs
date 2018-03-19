@@ -18,6 +18,35 @@ namespace Yet_another_tool
         public Form1()
         {
             InitializeComponent();
+            readAndAdd();
+        }
+
+        public void readAndAdd()
+        {
+            string path = "C:/Users/Артём/Desktop//Tables.xml";
+
+            List<Table> tableList = new List<Table>();
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Table>));
+
+            if (File.Exists(path))
+            {
+                // Deserialize the list
+                XmlReader reader = XmlReader.Create(path);
+                tableList = (List<Table>)serializer.Deserialize(reader);
+                reader.Close();
+                
+                Table table = new Table();
+
+                int y = tableList[tableList.Count - 1].tablePositionY + 20;
+
+            for (int i = 0; i < tableList.Count; i++)
+                {
+                    this.Controls.Add(table.render(
+                        tableList[i].name, 
+                        tableList[i].tablePositionY));
+                    y += 20;
+                }
+            }
         }
 
         private void tbl_create_Click(object sender, EventArgs e)
@@ -27,7 +56,6 @@ namespace Yet_another_tool
 
             // Creating a table object
             Table table = new Table();
-            table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text);
 
             List<Table> tableList = new List<Table>();
             XmlSerializer serializer = new XmlSerializer(typeof(List<Table>));
@@ -41,12 +69,16 @@ namespace Yet_another_tool
                 reader.Close();
 
                 // Add table to list
+                int y = tableList[tableList.Count - 1].tablePositionY + 20;
+                table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, y);
                 tableList.Add(table);
 
                 // Rewrite the old XML 
                 FileStream file = File.Create(path);
                 serializer.Serialize(file, tableList);
                 file.Close();
+
+                this.Controls.Add(table.render(table.name, table.tablePositionY));
 
                 MessageBox.Show("Table is added: " + table.name + " : " + table.number);
 
@@ -58,6 +90,7 @@ namespace Yet_another_tool
             else
             {
                 // Adding first table to the list
+                table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, 90);
                 tableList.Add(table);
 
                 // Creating a new XML
