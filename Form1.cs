@@ -57,6 +57,7 @@ namespace Yet_another_tool
             // Creating a table object
             Table table = new Table();
 
+            // Creating list of tables
             List<Table> tableList = new List<Table>();
             XmlSerializer serializer = new XmlSerializer(typeof(List<Table>));
 
@@ -78,6 +79,7 @@ namespace Yet_another_tool
                 serializer.Serialize(file, tableList);
                 file.Close();
 
+                // Rendering table in UI
                 this.Controls.Add(table.render(table.name, table.tablePositionY));
 
                 MessageBox.Show("Table is added: " + table.name + " : " + table.number);
@@ -90,16 +92,20 @@ namespace Yet_another_tool
             else
             {
                 // Adding first table to the list
-                table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, 90);
+                table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, 120);
                 tableList.Add(table);
-
+                
                 // Creating a new XML
                 FileStream file = File.Create(path);
                 serializer.Serialize(file, tableList);
                 file.Close();
 
+                // Rendering table info in UI
+                this.Controls.Add(table.render(table.name, table.tablePositionY));
+
                 MessageBox.Show("Table is created: " + table.name + " : " + table.number);
 
+                // Emty the textboxes
                 tbl_name.Text = "";
                 tbl_num.Text = "";
                 tbl_id.Text = "";
