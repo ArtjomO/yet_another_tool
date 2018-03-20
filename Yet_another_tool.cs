@@ -23,19 +23,13 @@ namespace Yet_another_tool
 
         public void readAndAdd()
         {
-            string path = "C:/Users/Артём/Desktop//Tables.xml";
-
+            Table table = new Table();
             List<Table> tableList = new List<Table>();
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Table>));
+            Read_write_xml xml = new Read_write_xml();
 
-            if (File.Exists(path))
+            if (File.Exists(xml.path))
             {
-                // Deserialize the list
-                XmlReader reader = XmlReader.Create(path);
-                tableList = (List<Table>)serializer.Deserialize(reader);
-                reader.Close();
-                
-                Table table = new Table();
+                tableList = xml.Read();
 
                 int y = tableList[tableList.Count - 1].tablePositionY + 20;
 

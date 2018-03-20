@@ -52,6 +52,7 @@
     <Compile Include="Create_table.Designer.cs">
       <DependentUpon>Create_table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Read_write_xml.cs" />
     <Compile Include="Yet_another_tool.cs">
       <SubType>Form</SubType>
     </Compile>
