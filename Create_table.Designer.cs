@@ -56,6 +56,7 @@
             this.tbl_create.TabIndex = 12;
             this.tbl_create.Text = "Create";
             this.tbl_create.UseVisualStyleBackColor = true;
+            this.tbl_create.Click += new System.EventHandler(this.tbl_create_Click);
             // 
             // tbl_id
             // 
@@ -119,7 +120,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Create_table";
-            this.Text = "Create_table";
+            this.Text = "Create table";
             this.ResumeLayout(false);
             this.PerformLayout();
 

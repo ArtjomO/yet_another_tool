@@ -52,11 +52,11 @@
     <Compile Include="Create_table.Designer.cs">
       <DependentUpon>Create_table.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Yet_another_tool.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Yet_another_tool.Designer.cs">
+      <DependentUpon>Yet_another_tool.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,8 +64,8 @@
     <EmbeddedResource Include="Create_table.resx">
       <DependentUpon>Create_table.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Yet_another_tool.resx">
+      <DependentUpon>Yet_another_tool.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
