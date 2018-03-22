@@ -5,23 +5,37 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using System.IO;
 
 namespace Yet_another_tool
 {
     class Read_write_xml
     {
-        public string path = "C:/Users/Артём/Desktop//Tables.xml";
+        public string path = "C:/Users/Артём/Desktop//Table list.xml";
 
         private List<Table> tableList = new List<Table>();
 
         public List<Table> Read()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Table>));
-            XmlReader reader = XmlReader.Create(path);
-            tableList = (List<Table>)serializer.Deserialize(reader);
-            reader.Close();
+            if (File.Exists(path))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Table>));
+                XmlReader reader = XmlReader.Create(path);
+                tableList = (List<Table>)serializer.Deserialize(reader);
+                reader.Close();
 
-            return tableList;
+                return tableList;                                                     // Returns list with tables
+            }
+
+            return tableList;                                                         // Returns empty list
+        }
+
+        public void Write(List<Table> list)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Table>));
+            FileStream stream = File.Create(path);
+            serializer.Serialize(stream, list);
+            stream.Close();
         }
     }
 }

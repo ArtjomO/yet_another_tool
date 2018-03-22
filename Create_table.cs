@@ -25,65 +25,29 @@ namespace Yet_another_tool
 
         private void tbl_create_Click(object sender, EventArgs e)
         {
-            // Needed for creating and opening the file
-            string path = "C:/Users/Артём/Desktop//Tables.xml";
+            Table table = new Table();                                                      // Creating a table object
+            List<Table> tableList = new List<Table>();                                      // Creating list of tables
+            Read_write_xml xml = new Read_write_xml();                                      // Creating read / write XML tool?!
 
-            // Creating a table object
-            Table table = new Table();
+            tableList = xml.Read();                                                         // Getting list of tables from XML
 
-            // Creating list of tables
-            List<Table> tableList = new List<Table>();
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Table>));
+            int y = 120;                                                                    // Initial Y position of table if table list is to be created now
 
-            // If XML of tables exists open and add a table to the list, else - create new and add first table
-            if (File.Exists(path))
-            {
-                // Deserialize the list
-                XmlReader reader = XmlReader.Create(path);
-                tableList = (List<Table>)serializer.Deserialize(reader);
-                reader.Close();
+            if (tableList.Any()) y = tableList[tableList.Count - 1].tablePositionY + 20;     // Checking if list is empty or not, Y position depends on it
+            
+            table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, y);                      // Creating new table object
+            tableList.Add(table);                                                           // Adding created table to table list
 
-                // Add table to list
-                int y = tableList[tableList.Count - 1].tablePositionY + 20;
-                table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, y);
-                tableList.Add(table);
+            xml.Write(tableList);                                                           // Writing new XML list
 
-                // Rewrite the old XML 
-                FileStream file = File.Create(path);
-                serializer.Serialize(file, tableList);
-                file.Close();
+            table_list_form.Controls.Add(table.render(table.name, table.tablePositionY));   // Rendering table in Main form UI
 
-                // Rendering table in UI
-                table_list_form.Controls.Add(table.render(table.name, table.tablePositionY));
+            MessageBox.Show("Table is added: " + table.name + " : " + table.number);
 
-                MessageBox.Show("Table is added: " + table.name + " : " + table.number);
-
-                // Emty the textboxes
-                tbl_name.Text = "";
-                tbl_num.Text = "";
-                tbl_id.Text = "";
-            }
-            else
-            {
-                // Adding first table to the list
-                table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, 120);
-                tableList.Add(table);
-
-                // Creating a new XML
-                FileStream file = File.Create(path);
-                serializer.Serialize(file, tableList);
-                file.Close();
-
-                // Rendering table info in UI
-                this.Controls.Add(table.render(table.name, table.tablePositionY));
-
-                MessageBox.Show("Table is created: " + table.name + " : " + table.number);
-
-                // Emty the textboxes
-                tbl_name.Text = "";
-                tbl_num.Text = "";
-                tbl_id.Text = "";
-            }
+            // Emty the textboxes
+            tbl_name.Text = "";
+            tbl_num.Text = "";
+            tbl_id.Text = "";
         }
     }
 }

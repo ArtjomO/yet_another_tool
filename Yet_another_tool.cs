@@ -21,28 +21,27 @@ namespace Yet_another_tool
             readAndAdd();
         }
 
+        // Reading from XML onProgramStart and rendering existing tables in UI
         public void readAndAdd()
         {
+            Read_write_xml xml = new Read_write_xml();
             Table table = new Table();
             List<Table> tableList = new List<Table>();
-            Read_write_xml xml = new Read_write_xml();
 
-            if (File.Exists(xml.path))
+            tableList = xml.Read();                             // Getting list of tables
+
+            if (tableList.Any())
             {
-                tableList = xml.Read();
-
-                int y = tableList[tableList.Count - 1].tablePositionY + 20;
-
-            for (int i = 0; i < tableList.Count; i++)
+            for (int i = 0; i < tableList.Count; i++)           // If list is not emty - loop trough list and render each table in UI
                 {
                     this.Controls.Add(table.render(
-                        tableList[i].name, 
+                        tableList[i].name,
                         tableList[i].tablePositionY));
-                    y += 20;
                 }
             }
         }
 
+        // Open create table dialog
         private void open_crt_tbl_Click(object sender, EventArgs e)
         {
             Create_table create_table = new Create_table(this);
