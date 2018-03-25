@@ -13,13 +13,14 @@ namespace Yet_another_tool
 {
     public class Table
     {
-        public string name, number, id;
+        public string name, number, path_lxd, id;
         public int tablePositionY;
         
-        public void create(string name, string number, string id, int posY)
+        public void create(string name, string number, string id, string path_lxd, int posY)
         {
             this.name = name;
             this.number = number;
+            this.path_lxd = path_lxd;
             this.id = id;
             this.tablePositionY = posY;
         }

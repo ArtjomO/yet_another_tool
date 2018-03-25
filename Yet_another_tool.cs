@@ -44,7 +44,7 @@ namespace Yet_another_tool
         // Open create table dialog
         private void open_crt_tbl_Click(object sender, EventArgs e)
         {
-            Create_table create_table = new Create_table(this);
+            Create_table create_table = new Create_table(this);     // Initializing Create_table form and passing this form "designer?!?" as a parameter
             create_table.ShowDialog();
         }
     }
