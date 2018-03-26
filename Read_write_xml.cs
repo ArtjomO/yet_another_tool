@@ -12,6 +12,7 @@ namespace Yet_another_tool
     class Read_write_xml
     {
         public string path = "C:/Users/Артём/Desktop//Table list.xml";
+        //public string path = "C:/Users/chiefsm/Desktop//Table list.xml";
 
         private List<Table> tableList = new List<Table>();
 

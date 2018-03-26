@@ -58,10 +58,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(375, 545);
+            this.ClientSize = new System.Drawing.Size(375, 542);
             this.Controls.Add(this.open_crt_tbl);
             this.Controls.Add(this.label1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.MaximumSize = new System.Drawing.Size(391, 580);
+            this.MinimumSize = new System.Drawing.Size(391, 580);
             this.Name = "Main";
             this.Text = "Yet another tool";
             this.ResumeLayout(false);

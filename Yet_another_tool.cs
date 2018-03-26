@@ -33,9 +33,12 @@ namespace Yet_another_tool
             {
             for (int i = 0; i < tableList.Count; i++)           // If list is not emty - loop trough list and render each table in UI
                 {
-                    var arr = table.render(
+                    var arr = table.create(
                        tableList[i].name,
                        tableList[i].number,
+                       tableList[i].id,
+                       tableList[i].path_lxd,
+                       tableList[i].tbl_ip,
                        tableList[i].tablePositionX,
                        tableList[i].tablePositionY);
 
@@ -43,11 +46,6 @@ namespace Yet_another_tool
                     {
                         this.Controls.Add(el);
                     }
-                    //this.Controls.Add(table.render(
-                    //    tableList[i].name,
-                    //    tableList[i].number,
-                    //    tableList[i].tablePositionX,
-                    //    tableList[i].tablePositionY));
                 }
             }
         }

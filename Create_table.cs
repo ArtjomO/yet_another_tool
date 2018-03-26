@@ -41,15 +41,13 @@ namespace Yet_another_tool
 
             int y = 120;                                                                    // Initial Y position of table if table list is to be created now
 
-            if (tableList.Any()) y = tableList[tableList.Count - 1].tablePositionY + 20;     // Checking if list is empty or not, Y position depends on it
+            if (tableList.Any()) y = tableList[tableList.Count - 1].tablePositionY + 30;     // Checking if list is empty or not, Y position depends on it
 
-            table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, 150, y);         // Creating new table object
+            var arr = table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, tbl_ip.Text, 150, y);   // Creating new table object and returning list of elements which has to be rendered
 
             tableList.Add(table);                                                           // Adding created table to table list
 
             xml.Write(tableList);                                                           // Writing new XML list
-
-            var arr = table.render(table.name, table.number, table.tablePositionX, table.tablePositionY);
 
             foreach (var el in arr)                                                         // Rendering table in Main form UI
             {
@@ -63,6 +61,7 @@ namespace Yet_another_tool
             tbl_name.Text = "";
             tbl_num.Text = "";
             tbl_id.Text = "";
+            tbl_ip.Text = "";
 
             path_to_lxd = "";
         }
@@ -81,7 +80,7 @@ namespace Yet_another_tool
 
         private bool validate(string name, string number, string id, string path)
         {
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(number) || string.IsNullOrEmpty(id) || string.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(number) || string.IsNullOrEmpty(id) || string.IsNullOrEmpty(path) || string.IsNullOrEmpty(tbl_ip.Text))
             {
                 MessageBox.Show("Every field and Path to lxd must be specified");
                 return false;
