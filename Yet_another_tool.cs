@@ -7,9 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Serialization;
-using System.IO;
-using System.Xml;
 
 namespace Yet_another_tool
 {
@@ -30,13 +27,27 @@ namespace Yet_another_tool
 
             tableList = xml.Read();                             // Getting list of tables
 
+           
+
             if (tableList.Any())
             {
             for (int i = 0; i < tableList.Count; i++)           // If list is not emty - loop trough list and render each table in UI
                 {
-                    this.Controls.Add(table.render(
-                        tableList[i].name,
-                        tableList[i].tablePositionY));
+                    var arr = table.render(
+                       tableList[i].name,
+                       tableList[i].number,
+                       tableList[i].tablePositionX,
+                       tableList[i].tablePositionY);
+
+                    foreach (var el in arr)
+                    {
+                        this.Controls.Add(el);
+                    }
+                    //this.Controls.Add(table.render(
+                    //    tableList[i].name,
+                    //    tableList[i].number,
+                    //    tableList[i].tablePositionX,
+                    //    tableList[i].tablePositionY));
                 }
             }
         }

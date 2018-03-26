@@ -43,13 +43,19 @@ namespace Yet_another_tool
 
             if (tableList.Any()) y = tableList[tableList.Count - 1].tablePositionY + 20;     // Checking if list is empty or not, Y position depends on it
 
-            table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, y);         // Creating new table object
+            table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, 150, y);         // Creating new table object
 
             tableList.Add(table);                                                           // Adding created table to table list
 
             xml.Write(tableList);                                                           // Writing new XML list
 
-            table_list_form.Controls.Add(table.render(table.name, table.tablePositionY));   // Rendering table in Main form UI
+            var arr = table.render(table.name, table.number, table.tablePositionX, table.tablePositionY);
+
+            foreach (var el in arr)                                                         // Rendering table in Main form UI
+            {
+                table_list_form.Controls.Add(el);
+            }
+
 
             MessageBox.Show("Table is added: " + table.name + " : " + table.number);
 
