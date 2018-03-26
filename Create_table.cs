@@ -28,7 +28,7 @@ namespace Yet_another_tool
 
         private void tbl_create_Click(object sender, EventArgs e)
         {
-            if (!validate(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd))           // This validator is dum but, oh well..
+            if (!validate(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd))           // This validator is dumb but, oh well..
             {                                                                               // 
                 return;
             }
@@ -49,11 +49,10 @@ namespace Yet_another_tool
 
             xml.Write(tableList);                                                           // Writing new XML list
 
-            foreach (var el in arr)                                                         // Rendering table in Main form UI
+            foreach (var el in arr)                                                         // Rendering tables in Main form UI
             {
                 table_list_form.Controls.Add(el);
             }
-
 
             MessageBox.Show("Table is added: " + table.name + " : " + table.number);
 

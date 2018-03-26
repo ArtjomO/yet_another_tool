@@ -24,8 +24,7 @@ namespace Yet_another_tool
             Process.Start(path_lxd);
             Process.Start("vnc://" + tbl_ip);
         }
-
-
+        
         public List<Control> create(string name, string number, string id, string path_lxd, string tbl_ip, int posX, int posY)
         {
             this.name = name;
