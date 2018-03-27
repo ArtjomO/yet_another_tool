@@ -27,10 +27,10 @@ namespace Yet_another_tool
 
             tableList = xml.Read();                             // Getting list of tables
 
-           
-
             if (tableList.Any())
             {
+                int y = 120;
+
             for (int i = 0; i < tableList.Count; i++)           // If list is not emty - loop trough list and render each table in UI
                 {
                     var arr = table.create(
@@ -40,7 +40,9 @@ namespace Yet_another_tool
                        tableList[i].path_lxd,
                        tableList[i].tbl_ip,
                        tableList[i].tablePositionX,
-                       tableList[i].tablePositionY);
+                       y);                          //tableList[i].tablePositionY
+
+                    y += 30;
 
                     foreach (var el in arr)
                     {
