@@ -15,15 +15,17 @@ namespace Yet_another_tool
         public Main()
         {
             InitializeComponent();
-            readAndAdd();
+            readAndAdd(this);
         }
 
         // Reading from XML onProgramStart and rendering existing tables in UI
-        public void readAndAdd()
+        public void readAndAdd(Main frm)
         {
             Read_write_xml xml = new Read_write_xml();
             Table table = new Table();
             List<Table> tableList = new List<Table>();
+
+            table.context = frm;
 
             tableList = xml.Read();                             // Getting list of tables
 

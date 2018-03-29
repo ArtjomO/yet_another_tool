@@ -26,24 +26,23 @@ namespace Yet_another_tool
         
         protected void context_delete_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("delete is clicked)");
             Read_write_xml xml = new Read_write_xml();
             List<Table> tableList = new List<Table>();
 
             tableList = xml.Read();
 
-            MenuItem l = (MenuItem)sender;
-            MessageBox.Show(l.Text);
+            MenuItem item = (sender as MenuItem);
             
+            ContextMenu owner = item.Parent as ContextMenu;
 
+            int itemToRemove = tableList.FindIndex(i => i.name == owner.SourceControl.Text);
+            tableList.RemoveAt(itemToRemove);
+            xml.Write(tableList);
+        
+            Application.Restart();
+    }
 
-            //for (int i = 0; i < tableList.Count; i++)
-            //{
-
-            //}  
-        }
-
-        public List<Control> create(string name, string number, string id, string path_lxd, string tbl_ip, int posX, int posY)
+    public List<Control> create(string name, string number, string id, string path_lxd, string tbl_ip, int posX, int posY)
         {
             this.name = name;
             this.number = number;
@@ -55,10 +54,7 @@ namespace Yet_another_tool
 
             ContextMenu tbl_context = new ContextMenu();
             tbl_context.MenuItems.Add("delete", new EventHandler(context_delete_Click));
-            //MenuItem del = new MenuItem();
-            //del.Click += new EventHandler(context_delete_Click);
             
-
             Label tbl_name_label = new Label();
             tbl_name_label.Location = new Point(50, posY);
             tbl_name_label.Text = name;
@@ -80,8 +76,6 @@ namespace Yet_another_tool
             tbl_open_btn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             tbl_open_btn.UseVisualStyleBackColor = false;
             tbl_open_btn.Click += new EventHandler(Btn_handler_Click);
-
-            //Control[] controls = new Control[] { tbl_name_label, tbl_number_label };
 
             List<Control> controlList = new List<Control>();
             controlList.Add(tbl_name_label);
