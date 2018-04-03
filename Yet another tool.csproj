@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MgBox.cs" />
     <Compile Include="Create_table.cs">
       <SubType>Form</SubType>
     </Compile>

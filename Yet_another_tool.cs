@@ -18,47 +18,38 @@ namespace Yet_another_tool
             readAndAdd(this);
         }
 
-        Table table = new Table();
-        
         // Reading from XML onProgramStart and rendering existing tables in UI
         public void readAndAdd(Main frm)
         {
+            Table table = new Table();
             Read_write_xml xml = new Read_write_xml();
             List<Table> tableList = new List<Table>();
-            
-
             tableList = xml.Read();                             // Getting list of tables
 
             if (tableList.Any())
             {
-                int y = 90;
-
             for (int i = 0; i < tableList.Count; i++)           // If list is not emty - loop trough list and render each table in UI
                 {
-                    y += 30;
+                    MgBox.positionY += 30;
                     var arr = table.create(
                        tableList[i].name,
                        tableList[i].number,
                        tableList[i].id,
                        tableList[i].path_lxd,
-                       tableList[i].tbl_ip,
-                       tableList[i].tablePositionX,
-                       y);                          //tableList[i].tablePositionY
+                       tableList[i].tbl_ip);                          
 
                     foreach (var el in arr)
                     {
                         this.Controls.Add(el);
                     }
                 }
-
-                table.tablePositionY = y;
             }
         }
 
         // Open create table dialog
         private void open_crt_tbl_Click(object sender, EventArgs e)
         {
-            Create_table create_table = new Create_table(this, table);     // Initializing Create_table form and passing this form "designer?!?" as a parameter
+            Create_table create_table = new Create_table(this);     // Initializing Create_table form and passing this form "designer?!?" as a parameter
             create_table.ShowDialog();
         }
 
