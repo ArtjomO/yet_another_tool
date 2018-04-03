@@ -40,6 +40,7 @@ namespace Yet_another_tool
             xml.Write(tableList);
         
             Application.Restart();
+            
     }
 
     public List<Control> create(string name, string number, string id, string path_lxd, string tbl_ip, int posX, int posY)
@@ -71,7 +72,7 @@ namespace Yet_another_tool
             tbl_open_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             tbl_open_btn.Location = new System.Drawing.Point(130, posY);
             tbl_open_btn.Size = new System.Drawing.Size(55, 20);
-            //tbl_open_btn.TabIndex = 14;
+
             tbl_open_btn.Text = "Open";
             tbl_open_btn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             tbl_open_btn.UseVisualStyleBackColor = false;

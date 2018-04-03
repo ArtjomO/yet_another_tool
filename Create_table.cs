@@ -18,36 +18,48 @@ namespace Yet_another_tool
     public partial class Create_table : Form
     {
         Main table_list_form;
-        public Create_table(Main frm)
+        int y;
+        Table table;
+        public Create_table(Main frm, Table table)
         {
             InitializeComponent();
             table_list_form = frm;
+            table = table;
         }
 
         public string path_to_lxd;                                                          // Storing path after user has selected file in path_lxd_Click
 
+
         private void tbl_create_Click(object sender, EventArgs e)
         {
-            if (!validate(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd))           // This validator is dumb but, oh well..
-            {                                                                               // 
-                return;
-            }
-
-            Table table = new Table();                                                      // Creating a table object
+            //if (!validate(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd))           // This validator is dumb but, oh well..
+            //{                                                                               // 
+            //    return;
+            //}
+            //Table table = new Table();                                                      // Creating a table object
             List<Table> tableList = new List<Table>();                                      // Creating list of tables
             Read_write_xml xml = new Read_write_xml();                                      // Creating read / write XML tool?!
 
             tableList = xml.Read();                                                         // Getting list of tables from XML
 
-            int y = 120;                                                                    // Initial Y position of table if table list is to be created now
 
-            if (tableList.Any()) y = tableList[tableList.Count - 1].tablePositionY + 30;     // Checking if list is empty or not, Y position depends on it
+            if (tableList.Any())     // Checking if list is empty or not, Y position depends on it
+            {
+                y += 30;
+                table.tablePositionY += 30;
+            }
+            else
+            {
+                table.tablePositionY = 120;
+            }
 
             var arr = table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, tbl_ip.Text, 150, y);   // Creating new table object and returning list of elements which has to be rendered
 
             tableList.Add(table);                                                           // Adding created table to table list
 
             xml.Write(tableList);                                                           // Writing new XML list
+
+
 
             foreach (var el in arr)                                                         // Rendering tables in Main form UI
             {
