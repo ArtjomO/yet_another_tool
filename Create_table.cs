@@ -55,8 +55,6 @@ namespace Yet_another_tool
 
             xml.Write(tableList);                                                           // Writing new XML list
 
-
-
             foreach (var el in arr)                                                         // Rendering tables in Main form UI
             {
                 table_list_form.Controls.Add(el);

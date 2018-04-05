@@ -39,7 +39,16 @@ namespace Yet_another_tool
             xml.Write(tableList);
         
             Application.Restart();
-    }
+        }
+    
+        protected void context_handler_edit()
+        {
+            //get table name
+            //save it in Mg Box
+            //open new Create_table
+            //in create_table form get table to delete in mgBocx
+            //serialize?!
+        }
 
     public List<Control> create(string name, string number, string id, string path_lxd, string tbl_ip)
         {
@@ -50,6 +59,7 @@ namespace Yet_another_tool
             this.tbl_ip = tbl_ip;
 
             ContextMenu tbl_context = new ContextMenu();
+            tbl_context.MenuItems.Add("edit");
             tbl_context.MenuItems.Add("delete", new EventHandler(context_delete_Click));
             
             Label tbl_name_label = new Label();
@@ -62,7 +72,7 @@ namespace Yet_another_tool
             tbl_number_label.Location = new Point(13, MgBox.positionY);
             tbl_number_label.Text = number;
             tbl_number_label.AutoSize = true;
-            tbl_number_label.ContextMenu = tbl_context;
+            //tbl_number_label.ContextMenu = tbl_context;
 
             Button tbl_open_btn = new Button();
             tbl_open_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
