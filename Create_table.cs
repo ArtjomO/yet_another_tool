@@ -29,47 +29,57 @@ namespace Yet_another_tool
 
         private void tbl_create_Click(object sender, EventArgs e)
         {
-            //if (!validate(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd))           // This validator is dumb but, oh well..
-            //{                                                                               // 
-            //    return;
-            //}
-            Table table = new Table();                                                      // Creating a table object
-            List<Table> tableList = new List<Table>();                                      // Creating list of tables
-            Read_write_xml xml = new Read_write_xml();                                      // Creating read / write XML tool?!
-
-            tableList = xml.Read();                                                         // Getting list of tables from XML
-
-
-            if (tableList.Any())     // Checking if list is empty or not, Y position depends on it
+            if (MgBox.editState == false)
             {
-                MgBox.positionY += 30;
+                //if (!validate(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd))           // This validator is dumb but, oh well..
+                //{                                                                               // 
+                //    return;
+                //}
+                Table table = new Table();                                                      // Creating a table object
+                List<Table> tableList = new List<Table>();                                      // Creating list of tables
+                Read_write_xml xml = new Read_write_xml();                                      // Creating read / write XML tool?!
+
+                tableList = xml.Read();                                                         // Getting list of tables from XML
+
+
+                if (tableList.Any())     // Checking if list is empty or not, Y position depends on it
+                {
+                    MgBox.positionY += 30;
+                }
+                else
+                {
+                    MgBox.positionY = 120;
+                }
+
+                var arr = table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, tbl_ip.Text);   // Creating new table object and returning list of elements which has to be rendered
+
+                tableList.Add(table);                                                           // Adding created table to table list
+
+                xml.Write(tableList);                                                           // Writing new XML list
+
+                foreach (var el in arr)                                                         // Rendering tables in Main form UI
+                {
+                    table_list_form.Controls.Add(el);
+                }
+
+                MessageBox.Show("Table is added: " + table.name + " : " + table.number);
+
+                // Emty the textboxes
+                tbl_name.Text = "";
+                tbl_num.Text = "";
+                tbl_id.Text = "";
+                tbl_ip.Text = "";
+
+                path_to_lxd = "";
             }
             else
             {
-                MgBox.positionY = 120;
+                //Control lbl = new Button();
+                //lbl.Text = "kek";
+                //table_list_form.Controls.Add(lbl);   this donesn't work need to serialize elements and dinamically add eventhanlders
             }
-
-            var arr = table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, tbl_ip.Text);   // Creating new table object and returning list of elements which has to be rendered
-
-            tableList.Add(table);                                                           // Adding created table to table list
-
-            xml.Write(tableList);                                                           // Writing new XML list
-
-            foreach (var el in arr)                                                         // Rendering tables in Main form UI
-            {
-                table_list_form.Controls.Add(el);
-            }
-
-            MessageBox.Show("Table is added: " + table.name + " : " + table.number);
-
-            // Emty the textboxes
-            tbl_name.Text = "";
-            tbl_num.Text = "";
-            tbl_id.Text = "";
-            tbl_ip.Text = "";
-
-            path_to_lxd = "";
         }
+
 
         private void path_lxd_Click(object sender, EventArgs e)                         // Selecting path to .lxd file
         {

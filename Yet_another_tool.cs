@@ -21,6 +21,7 @@ namespace Yet_another_tool
         // Reading from XML onProgramStart and rendering existing tables in UI
         public void readAndAdd(Main frm)
         {
+            MgBox.form = this;
             Table table = new Table();
             Read_write_xml xml = new Read_write_xml();
             List<Table> tableList = new List<Table>();

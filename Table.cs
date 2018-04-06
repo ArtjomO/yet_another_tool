@@ -41,13 +41,23 @@ namespace Yet_another_tool
             Application.Restart();
         }
     
-        protected void context_handler_edit()
+        protected void context_edit_clic(object sender, EventArgs e) // this doesnt work must clean mgbox
         {
-            //get table name
-            //save it in Mg Box
-            //open new Create_table
-            //in create_table form get table to delete in mgBocx
-            //serialize?!
+            Read_write_xml xml = new Read_write_xml();
+            List<Table> tableList = new List<Table>();
+
+            tableList = xml.Read();
+
+            MenuItem item = (sender as MenuItem);
+
+            ContextMenu owner = item.Parent as ContextMenu;
+
+            //int itemToEdit = tableList.FindIndex(i => i.name == owner.SourceControl.Text);
+
+            MgBox.tableToEdit = tableList.Find(i => i.name == owner.SourceControl.Text).name;
+            MessageBox.Show(MgBox.tableToEdit);
+
+            Create_table create_table = new Create_table(MgBox.form);
         }
 
     public List<Control> create(string name, string number, string id, string path_lxd, string tbl_ip)
@@ -59,7 +69,7 @@ namespace Yet_another_tool
             this.tbl_ip = tbl_ip;
 
             ContextMenu tbl_context = new ContextMenu();
-            tbl_context.MenuItems.Add("edit");
+            tbl_context.MenuItems.Add("edit", new EventHandler(context_edit_clic));
             tbl_context.MenuItems.Add("delete", new EventHandler(context_delete_Click));
             
             Label tbl_name_label = new Label();
@@ -67,6 +77,7 @@ namespace Yet_another_tool
             tbl_name_label.Text = name;
             tbl_name_label.AutoSize = true;
             tbl_name_label.ContextMenu = tbl_context;
+            
 
             Label tbl_number_label = new Label();
             tbl_number_label.Location = new Point(13, MgBox.positionY);
