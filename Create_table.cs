@@ -17,29 +17,42 @@ namespace Yet_another_tool
 {
     public partial class Create_table : Form
     {
+        Table table = new Table();                                                      // Creating a table object
+        List<Table> tableList = new List<Table>();                                      // Creating list of tables
+        Read_write_xml xml = new Read_write_xml();                                      // Creating read / write XML tool?!
+
         Main table_list_form;
         public Create_table(Main frm)
         {
             InitializeComponent();
             table_list_form = frm;
+
+            tableList = xml.Read();
+
+            int tableToEdit = tableList.FindIndex(i => i.name == MgBox.tableToEdit);
+            tbl_name.Text = tableList[tableToEdit].name;
+            tbl_num.Text = tableList[tableToEdit].number;
+            tbl_id.Text = tableList[tableToEdit].id;
+            path_to_lxd = tableList[tableToEdit].path_lxd;
+            tbl_ip.Text = tableList[tableToEdit].tbl_ip;
+            MessageBox.Show("Old name: " + tableList[tableToEdit].name);
         }
 
         public string path_to_lxd;                                                          // Storing path after user has selected file in path_lxd_Click
 
 
+
         private void tbl_create_Click(object sender, EventArgs e)
         {
+            tableList = xml.Read();                                                         // Getting list of tables from XML
+
             if (MgBox.editState == false)
             {
                 //if (!validate(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd))           // This validator is dumb but, oh well..
                 //{                                                                               // 
                 //    return;
                 //}
-                Table table = new Table();                                                      // Creating a table object
-                List<Table> tableList = new List<Table>();                                      // Creating list of tables
-                Read_write_xml xml = new Read_write_xml();                                      // Creating read / write XML tool?!
 
-                tableList = xml.Read();                                                         // Getting list of tables from XML
 
 
                 if (tableList.Any())     // Checking if list is empty or not, Y position depends on it
@@ -74,9 +87,19 @@ namespace Yet_another_tool
             }
             else
             {
-                //Control lbl = new Button();
-                //lbl.Text = "kek";
-                //table_list_form.Controls.Add(lbl);   this donesn't work need to serialize elements and dinamically add eventhanlders
+                int tableToEdit = tableList.FindIndex(i => i.name == MgBox.tableToEdit);
+
+                tableList[tableToEdit].name = tbl_name.Text;
+                tableList[tableToEdit].number = tbl_num.Text;
+                tableList[tableToEdit].id = tbl_id.Text;
+                tableList[tableToEdit].path_lxd = path_to_lxd;
+                tableList[tableToEdit].tbl_ip = tbl_ip.Text;
+                MessageBox.Show("New name: " + tableList[tableToEdit].name);
+
+
+
+                xml.Write(tableList);
+                Application.Restart();
             }
         }
 
