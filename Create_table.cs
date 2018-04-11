@@ -27,21 +27,26 @@ namespace Yet_another_tool
             InitializeComponent();
             table_list_form = frm;
 
-            tableList = xml.Read();
+            if (MgBox.editState == true)
+            {
+                tableList = xml.Read();
+                int tableToEdit = tableList.FindIndex(i => i.name == MgBox.tableToEdit);
 
-            int tableToEdit = tableList.FindIndex(i => i.name == MgBox.tableToEdit);
-            tbl_name.Text = tableList[tableToEdit].name;
-            tbl_num.Text = tableList[tableToEdit].number;
-            tbl_id.Text = tableList[tableToEdit].id;
-            path_to_lxd = tableList[tableToEdit].path_lxd;
-            tbl_ip.Text = tableList[tableToEdit].tbl_ip;
-            MessageBox.Show("Old name: " + tableList[tableToEdit].name);
+                this.Text = "Edit table: " + tableList[tableToEdit].number;
+                tbl_create.Text = "Edit";
+
+                
+                tbl_name.Text = tableList[tableToEdit].name;
+                tbl_num.Text = tableList[tableToEdit].number;
+                tbl_id.Text = tableList[tableToEdit].id;
+                path_to_lxd = tableList[tableToEdit].path_lxd;
+                tbl_ip.Text = tableList[tableToEdit].tbl_ip;
+                //MessageBox.Show("Old name: " + tableList[tableToEdit].name);
+            }
         }
-
+        
         public string path_to_lxd;                                                          // Storing path after user has selected file in path_lxd_Click
-
-
-
+        
         private void tbl_create_Click(object sender, EventArgs e)
         {
             tableList = xml.Read();                                                         // Getting list of tables from XML
@@ -52,8 +57,6 @@ namespace Yet_another_tool
                 //{                                                                               // 
                 //    return;
                 //}
-
-
 
                 if (tableList.Any())     // Checking if list is empty or not, Y position depends on it
                 {
@@ -96,8 +99,6 @@ namespace Yet_another_tool
                 tableList[tableToEdit].tbl_ip = tbl_ip.Text;
                 MessageBox.Show("New name: " + tableList[tableToEdit].name);
 
-
-
                 xml.Write(tableList);
                 Application.Restart();
             }
@@ -127,6 +128,11 @@ namespace Yet_another_tool
             {
                 return true;
             }
+        }
+
+        private void Create_table_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MgBox.editState = false;
         }
     }
 }

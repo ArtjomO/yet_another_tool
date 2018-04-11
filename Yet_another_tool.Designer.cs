@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.open_crt_tbl = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.open_crt_tbl = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,17 +47,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Table list:";
             // 
-            // open_crt_tbl
-            // 
-            this.open_crt_tbl.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.open_crt_tbl.Location = new System.Drawing.Point(288, 61);
-            this.open_crt_tbl.Name = "open_crt_tbl";
-            this.open_crt_tbl.Size = new System.Drawing.Size(75, 23);
-            this.open_crt_tbl.TabIndex = 1;
-            this.open_crt_tbl.Text = "Create table";
-            this.open_crt_tbl.UseVisualStyleBackColor = true;
-            this.open_crt_tbl.Click += new System.EventHandler(this.open_crt_tbl_Click);
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -68,9 +57,19 @@
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.deleteToolStripMenuItem.Text = "delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // open_crt_tbl
+            // 
+            this.open_crt_tbl.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.open_crt_tbl.Location = new System.Drawing.Point(288, 61);
+            this.open_crt_tbl.Name = "open_crt_tbl";
+            this.open_crt_tbl.Size = new System.Drawing.Size(75, 23);
+            this.open_crt_tbl.TabIndex = 1;
+            this.open_crt_tbl.Text = "Create table";
+            this.open_crt_tbl.UseVisualStyleBackColor = true;
+            this.open_crt_tbl.Click += new System.EventHandler(this.open_crt_tbl_Click);
             // 
             // Main
             // 
@@ -85,6 +84,7 @@
             this.MinimumSize = new System.Drawing.Size(391, 580);
             this.Name = "Main";
             this.Text = "Yet another tool";
+            this.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.Main_ControlAdded);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

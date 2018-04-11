@@ -144,6 +144,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Create_table";
             this.Text = "Create table";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Create_table_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
