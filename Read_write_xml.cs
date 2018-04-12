@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,14 +10,14 @@ using System.IO;
 
 namespace Yet_another_tool
 {
-    class Read_write_xml
+    public static class Read_write_xml
     {
-        public string path = "C:/Users/Артём/Desktop//Table list.xml";
+        private static string path = "C:/Users/Артём/Desktop//Table list.xml";
         //public string path = "C:/Users/chiefsm/Desktop//Table list.xml";
 
-        private List<Table> tableList = new List<Table>();
-
-        public List<Table> Read()
+        //private List<Table> tableList = new List<Table>();
+        public static List<Table> tableList;
+        public static List<Table> Read()
         {
             if (File.Exists(path))
             {
@@ -25,13 +26,14 @@ namespace Yet_another_tool
                 tableList = (List<Table>)serializer.Deserialize(reader);
                 reader.Close();
 
+                MgBox.tableList = tableList;
                 return tableList;                                                     // Returns list with tables
             }
 
             return tableList;                                                         // Returns empty list
         }
 
-        public void Write(List<Table> list)
+        static void Write(List<Table> list)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Table>));
             FileStream stream = File.Create(path);

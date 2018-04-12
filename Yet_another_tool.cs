@@ -21,32 +21,32 @@ namespace Yet_another_tool
         // Reading from XML onProgramStart and rendering existing tables in UI
         public void readAndAdd(Main frm)
         {
-            Table table = new Table();
-            Read_write_xml xml = new Read_write_xml();
-            List<Table> tableList = new List<Table>();
-            tableList = xml.Read();                             // Getting list of tables
+            Read_write_xml.Read();
+            
+            List<Table> tableList = MgBox.tableList;
 
             if (tableList.Any())
             {
             for (int i = 0; i < tableList.Count; i++)           // If list is not emty - loop trough list and render each table in UI
                 {
                     MgBox.positionY += 30;
-                    var arr = table.create(
-                       tableList[i].name,
-                       tableList[i].number,
-                       tableList[i].id,
-                       tableList[i].path_lxd,
-                       tableList[i].tbl_ip);                          
-
-                    foreach (var el in arr)
+                    var newTableControls = new Table(
+                       tableList[i].Name,
+                       tableList[i].Number,
+                       tableList[i].Id,
+                       tableList[i].Path_lxd,
+                       tableList[i].Tbl_ip)
+                                        .GetControlList();
+                    
+                    foreach (var control in newTableControls)
                     {
-                        this.Controls.Add(el);
+                        this.Controls.Add(control);
                     }
                 }
             }
         }
 
-        private void Main_ControlAdded(object sender, ControlEventArgs e)      // Adding context menu with eHandlers with each label / table_name element
+        private void Main_ControlAdded(object sender, ControlEventArgs e)      // Adding context menu with eHandler with each label / table_name element
         {
             if (e.Control.Name == "table_name")
             {

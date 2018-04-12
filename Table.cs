@@ -15,40 +15,43 @@ namespace Yet_another_tool
 {
     public class Table
     {
-        public string name, number, path_lxd, id, tbl_ip;
+        public string Name, Number, Path_lxd, Id, Tbl_ip;
+
+        public Table(string name, string number, string id, string path_lxd, string tbl_ip)
+        {
+            Name = name;
+            Number = number;
+            Path_lxd = path_lxd;
+            Id = id;
+            Tbl_ip = tbl_ip;
+        }
 
         protected void Btn_handler_Click(object sender, EventArgs e)
         {
-            Process.Start(path_lxd);
-            Process.Start("vnc://" + tbl_ip);
+            Process.Start(Path_lxd);
+            Process.Start("vnc://" + Tbl_ip);
         }
         
-        public List<Control> create(string name, string number, string id, string path_lxd, string tbl_ip)
+        public List<Control> GetControlList()
         {
-            this.name = name;
-            this.number = number;
-            this.path_lxd = path_lxd;
-            this.id = id;
-            this.tbl_ip = tbl_ip;
-
             Label tbl_name_label = new Label();
             tbl_name_label.Location = new Point(50, MgBox.positionY);
-            tbl_name_label.Text = name;
+            tbl_name_label.Text = Name;
             tbl_name_label.Name = "table_name";
             tbl_name_label.AutoSize = true;
             
             Label tbl_number_label = new Label();
             tbl_number_label.Location = new Point(13, MgBox.positionY);
-            tbl_number_label.Text = number;
+            tbl_number_label.Text = Number;
             tbl_number_label.AutoSize = true;
 
             Button tbl_open_btn = new Button();
-            tbl_open_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            tbl_open_btn.Location = new System.Drawing.Point(130, MgBox.positionY);
-            tbl_open_btn.Size = new System.Drawing.Size(55, 20);
+            tbl_open_btn.Font = new Font("Microsoft Sans Serif", 7.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+            tbl_open_btn.Location = new Point(130, MgBox.positionY);
+            tbl_open_btn.Size = new Size(55, 20);
 
             tbl_open_btn.Text = "Open";
-            tbl_open_btn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            tbl_open_btn.TextAlign = ContentAlignment.TopCenter;
             tbl_open_btn.UseVisualStyleBackColor = false;
             tbl_open_btn.Click += new EventHandler(Btn_handler_Click);
 
