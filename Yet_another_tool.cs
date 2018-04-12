@@ -40,20 +40,22 @@ namespace Yet_another_tool
 
                     foreach (var el in arr)
                     {
-                        //if (el.Name == "table_name")
-                        //{
-                        //    ContextMenu tbl_context = new ContextMenu();
-                        //    tbl_context.MenuItems.Add("edit", new EventHandler(context_edit_clic));
-                        //    tbl_context.MenuItems.Add("delete", new EventHandler(context_edit_clic));
-                        //    el.ContextMenu = tbl_context;
-                        //}
                         this.Controls.Add(el);
                     }
                 }
             }
         }
 
-        
+        private void Main_ControlAdded(object sender, ControlEventArgs e)      // Adding context menu with eHandlers with each label / table_name element
+        {
+            if (e.Control.Name == "table_name")
+            {
+                ContextMenu tbl_context = new ContextMenu();
+                tbl_context.MenuItems.Add("edit", new EventHandler(context_edit_clic));
+                tbl_context.MenuItems.Add("delete", new EventHandler(context_edit_clic));
+                e.Control.ContextMenu = tbl_context;
+            }
+        }
 
         protected void context_edit_clic(object sender, EventArgs e)
         {
@@ -90,17 +92,6 @@ namespace Yet_another_tool
         {
             Create_table create_table = new Create_table(this);     // Initializing Create_table form and passing this form "designer?!?" as a parameter
             create_table.ShowDialog();
-        }
-
-        private void Main_ControlAdded(object sender, ControlEventArgs e)
-        {
-            if (e.Control.Name == "table_name")
-            {
-                ContextMenu tbl_context = new ContextMenu();
-                tbl_context.MenuItems.Add("edit", new EventHandler(context_edit_clic));
-                tbl_context.MenuItems.Add("delete", new EventHandler(context_edit_clic));
-                e.Control.ContextMenu = tbl_context;
-            }
         }
     }
 }

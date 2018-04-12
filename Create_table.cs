@@ -35,7 +35,6 @@ namespace Yet_another_tool
                 this.Text = "Edit table: " + tableList[tableToEdit].number;
                 tbl_create.Text = "Edit";
 
-                
                 tbl_name.Text = tableList[tableToEdit].name;
                 tbl_num.Text = tableList[tableToEdit].number;
                 tbl_id.Text = tableList[tableToEdit].id;
