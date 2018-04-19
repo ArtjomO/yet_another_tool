@@ -31,12 +31,12 @@ namespace Yet_another_tool
             for (int i = 0; i < tableList.Count; i++)           // If list is not emty - loop trough list and render each table in UI
                 {
                     MgBox.positionY += 30;
-                    var arr = table.create(
-                       tableList[i].name,
-                       tableList[i].number,
-                       tableList[i].id,
-                       tableList[i].path_lxd,
-                       tableList[i].tbl_ip);                          
+                    var arr = table.Create(
+                       tableList[i].Name,
+                       tableList[i].Number,
+                       tableList[i].Id,
+                       tableList[i].Path_lxd,
+                       tableList[i].Tbl_ip);                          
 
                     foreach (var el in arr)
                     {
@@ -70,14 +70,14 @@ namespace Yet_another_tool
             switch (item.Text)
             {
                 case "delete":
-                    int itemToRemove = tableList.FindIndex(i => i.name == owner.SourceControl.Text);
+                    int itemToRemove = tableList.FindIndex(i => i.Name == owner.SourceControl.Text);
                     tableList.RemoveAt(itemToRemove);
                     xml.Write(tableList);
 
                     Application.Restart();
                     break;
                 case "edit":
-                    MgBox.tableToEdit = tableList.Find(i => i.name == owner.SourceControl.Text).name;
+                    MgBox.tableToEdit = tableList.Find(i => i.Name == owner.SourceControl.Text).Name;
 
                     Create_table create_table = new Create_table(this);     // Initializing Create_table form and passing this form "designer?!?" as a parameter
                     create_table.ShowDialog();

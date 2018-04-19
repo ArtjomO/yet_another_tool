@@ -15,21 +15,21 @@ namespace Yet_another_tool
 {
     public class Table
     {
-        public string name, number, path_lxd, id, tbl_ip;
+        public string Name, Number, Path_lxd, Id, Tbl_ip;
 
         protected void Btn_handler_Click(object sender, EventArgs e)
         {
-            Process.Start(path_lxd);
-            Process.Start("vnc://" + tbl_ip);
+            Process.Start(Path_lxd);
+            Process.Start("vnc://" + Tbl_ip);
         }
         
-        public List<Control> create(string name, string number, string id, string path_lxd, string tbl_ip)
+        public List<Control> Create(string name, string number, string id, string path_lxd, string tbl_ip)
         {
-            this.name = name;
-            this.number = number;
-            this.path_lxd = path_lxd;
-            this.id = id;
-            this.tbl_ip = tbl_ip;
+            Name = name;
+            Number = number;
+            Path_lxd = path_lxd;
+            Id = id;
+            Tbl_ip = tbl_ip;
 
             Label tbl_name_label = new Label();
             tbl_name_label.Location = new Point(50, MgBox.positionY);

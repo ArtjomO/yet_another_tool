@@ -30,17 +30,17 @@ namespace Yet_another_tool
             if (MgBox.editState == true)
             {
                 tableList = xml.Read();
-                int tableToEdit = tableList.FindIndex(i => i.name == MgBox.tableToEdit);
+                int tableToEdit = tableList.FindIndex(i => i.Name == MgBox.tableToEdit);
 
-                this.Text = "Edit table: " + tableList[tableToEdit].number;
+                this.Text = "Edit table: " + tableList[tableToEdit].Number;
                 tbl_create.Text = "Edit";
 
                 
-                tbl_name.Text = tableList[tableToEdit].name;
-                tbl_num.Text = tableList[tableToEdit].number;
-                tbl_id.Text = tableList[tableToEdit].id;
-                path_to_lxd = tableList[tableToEdit].path_lxd;
-                tbl_ip.Text = tableList[tableToEdit].tbl_ip;
+                tbl_name.Text = tableList[tableToEdit].Name;
+                tbl_num.Text = tableList[tableToEdit].Number;
+                tbl_id.Text = tableList[tableToEdit].Id;
+                path_to_lxd = tableList[tableToEdit].Path_lxd;
+                tbl_ip.Text = tableList[tableToEdit].Tbl_ip;
                 //MessageBox.Show("Old name: " + tableList[tableToEdit].name);
             }
         }
@@ -67,7 +67,7 @@ namespace Yet_another_tool
                     MgBox.positionY = 120;
                 }
 
-                var arr = table.create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, tbl_ip.Text);   // Creating new table object and returning list of elements which has to be rendered
+                var arr = table.Create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, tbl_ip.Text);   // Creating new table object and returning list of elements which has to be rendered
 
                 tableList.Add(table);                                                           // Adding created table to table list
 
@@ -78,7 +78,7 @@ namespace Yet_another_tool
                     table_list_form.Controls.Add(el);
                 }
 
-                MessageBox.Show("Table is added: " + table.name + " : " + table.number);
+                MessageBox.Show("Table is added: " + table.Name + " : " + table.Number);
 
                 // Emty the textboxes
                 tbl_name.Text = "";
@@ -90,14 +90,14 @@ namespace Yet_another_tool
             }
             else
             {
-                int tableToEdit = tableList.FindIndex(i => i.name == MgBox.tableToEdit);
+                int tableToEdit = tableList.FindIndex(i => i.Name == MgBox.tableToEdit);
 
-                tableList[tableToEdit].name = tbl_name.Text;
-                tableList[tableToEdit].number = tbl_num.Text;
-                tableList[tableToEdit].id = tbl_id.Text;
-                tableList[tableToEdit].path_lxd = path_to_lxd;
-                tableList[tableToEdit].tbl_ip = tbl_ip.Text;
-                MessageBox.Show("New name: " + tableList[tableToEdit].name);
+                tableList[tableToEdit].Name = tbl_name.Text;
+                tableList[tableToEdit].Number = tbl_num.Text;
+                tableList[tableToEdit].Id = tbl_id.Text;
+                tableList[tableToEdit].Path_lxd = path_to_lxd;
+                tableList[tableToEdit].Tbl_ip = tbl_ip.Text;
+                MessageBox.Show("New name: " + tableList[tableToEdit].Name);
 
                 xml.Write(tableList);
                 Application.Restart();
