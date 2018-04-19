@@ -9,14 +9,14 @@ using System.IO;
 
 namespace Yet_another_tool
 {
-    class Read_write_xml
+    static class Read_write_xml
     {
-        public string path = "C:/Users/Артём/Desktop//Table list.xml";
+        public static string path = "C:/Users/Артём/Desktop//Table list.xml";
         //public string path = "C:/Users/chiefsm/Desktop//Table list.xml";
 
-        private List<Table> tableList = new List<Table>();
+        private static List<Table> tableList;
 
-        public List<Table> Read()
+        public static List<Table> Read()
         {
             if (File.Exists(path))
             {
@@ -25,18 +25,21 @@ namespace Yet_another_tool
                 tableList = (List<Table>)serializer.Deserialize(reader);
                 reader.Close();
 
+                MgBox.tableList = tableList;
                 return tableList;                                                     // Returns list with tables
             }
 
             return tableList;                                                         // Returns empty list
         }
 
-        public void Write(List<Table> list)
+        public static void Write(List<Table> list)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Table>));
             FileStream stream = File.Create(path);
             serializer.Serialize(stream, list);
             stream.Close();
+
+            MgBox.tableList = list;
         }
     }
 }

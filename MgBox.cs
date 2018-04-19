@@ -13,5 +13,7 @@ namespace Yet_another_tool
         public static bool editState = false;
 
         public static string tableToEdit;
+
+        public static List<Table> tableList;
     }
 }

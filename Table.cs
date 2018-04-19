@@ -17,29 +17,32 @@ namespace Yet_another_tool
     {
         public string Name, Number, Path_lxd, Id, Tbl_ip;
 
+        public void Create(string name, string number, string id, string path_lxd, string tbl_ip)
+        {
+            Name = name;
+            Number = number;
+            Path_lxd = path_lxd;
+            Id = id;
+            Tbl_ip = tbl_ip;
+        }
+
         protected void Btn_handler_Click(object sender, EventArgs e)
         {
             Process.Start(Path_lxd);
             Process.Start("vnc://" + Tbl_ip);
         }
         
-        public List<Control> Create(string name, string number, string id, string path_lxd, string tbl_ip)
+        public List<Control> GetControlList()
         {
-            this.Name = name;
-            this.Number = number;
-            this.Path_lxd = path_lxd;
-            this.Id = id;
-            this.Tbl_ip = tbl_ip;
-
             Label tbl_name_label = new Label();
             tbl_name_label.Location = new Point(50, MgBox.positionY);
-            tbl_name_label.Text = name;
+            tbl_name_label.Text = Name;
             tbl_name_label.Name = "table_name";
             tbl_name_label.AutoSize = true;
             
             Label tbl_number_label = new Label();
             tbl_number_label.Location = new Point(13, MgBox.positionY);
-            tbl_number_label.Text = number;
+            tbl_number_label.Text = Number;
             tbl_number_label.AutoSize = true;
 
             Button tbl_open_btn = new Button();
@@ -59,6 +62,5 @@ namespace Yet_another_tool
 
             return controlList;
         }
-
     }    
 }

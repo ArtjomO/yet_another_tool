@@ -18,8 +18,7 @@ namespace Yet_another_tool
     public partial class Create_table : Form
     {
         Table table = new Table();                                                      // Creating a table object
-        List<Table> tableList = new List<Table>();                                      // Creating list of tables
-        Read_write_xml xml = new Read_write_xml();                                      // Creating read / write XML tool?!
+        List<Table> tableList = MgBox.tableList;                                      // Creating list of tables
 
         Main table_list_form;
         public Create_table(Main frm)
@@ -27,15 +26,13 @@ namespace Yet_another_tool
             InitializeComponent();
             table_list_form = frm;
 
-            if (MgBox.editState == true)
+            if (MgBox.editState)
             {
-                tableList = xml.Read();
                 int tableToEdit = tableList.FindIndex(i => i.Name == MgBox.tableToEdit);
 
                 this.Text = "Edit table: " + tableList[tableToEdit].Number;
                 tbl_create.Text = "Edit";
 
-                
                 tbl_name.Text = tableList[tableToEdit].Name;
                 tbl_num.Text = tableList[tableToEdit].Number;
                 tbl_id.Text = tableList[tableToEdit].Id;
@@ -49,9 +46,9 @@ namespace Yet_another_tool
         
         private void tbl_create_Click(object sender, EventArgs e)
         {
-            tableList = xml.Read();                                                         // Getting list of tables from XML
+            table.Create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, tbl_ip.Text);
 
-            if (MgBox.editState == false)
+            if (!MgBox.editState)
             {
                 //if (!validate(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd))           // This validator is dumb but, oh well..
                 //{                                                                               // 
@@ -67,15 +64,15 @@ namespace Yet_another_tool
                     MgBox.positionY = 120;
                 }
 
-                var arr = table.Create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, tbl_ip.Text);   // Creating new table object and returning list of elements which has to be rendered
+                List<Control> controlList = table.GetControlList();                             // Creating new table object and returning list of elements which has to be rendered
 
                 tableList.Add(table);                                                           // Adding created table to table list
 
-                xml.Write(tableList);                                                           // Writing new XML list
+                Read_write_xml.Write(tableList);                                                           // Writing new XML list
 
-                foreach (var el in arr)                                                         // Rendering tables in Main form UI
+                foreach (var control in controlList)                                                         // Rendering tables in Main form UI
                 {
-                    table_list_form.Controls.Add(el);
+                    table_list_form.Controls.Add(control);
                 }
 
                 MessageBox.Show("Table is added: " + table.Name + " : " + table.Number);
@@ -97,13 +94,12 @@ namespace Yet_another_tool
                 tableList[tableToEdit].Id = tbl_id.Text;
                 tableList[tableToEdit].Path_lxd = path_to_lxd;
                 tableList[tableToEdit].Tbl_ip = tbl_ip.Text;
-                MessageBox.Show("New name: " + tableList[tableToEdit].Name);
+                //MessageBox.Show("New name: " + tableList[tableToEdit].Name);
 
-                xml.Write(tableList);
+                Read_write_xml.Write(tableList);
                 Application.Restart();
             }
         }
-
 
         private void path_lxd_Click(object sender, EventArgs e)                         // Selecting path to .lxd file
         {

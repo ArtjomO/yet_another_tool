@@ -22,25 +22,26 @@ namespace Yet_another_tool
         public void readAndAdd(Main frm)
         {
             Table table = new Table();
-            Read_write_xml xml = new Read_write_xml();
-            List<Table> tableList = new List<Table>();
-            tableList = xml.Read();                             // Getting list of tables
+            Read_write_xml.Read();                              // Getting list of tables and store it in Mgbox
+            List<Table> tableList = MgBox.tableList;
 
             if (tableList.Any())
             {
             for (int i = 0; i < tableList.Count; i++)           // If list is not emty - loop trough list and render each table in UI
                 {
                     MgBox.positionY += 30;
-                    var arr = table.Create(
-                       tableList[i].Name,
-                       tableList[i].Number,
-                       tableList[i].Id,
-                       tableList[i].Path_lxd,
-                       tableList[i].Tbl_ip);                          
+                    table.Create(
+                        tableList[i].Name,
+                        tableList[i].Number,
+                        tableList[i].Id,
+                        tableList[i].Path_lxd,
+                        tableList[i].Tbl_ip);
 
-                    foreach (var el in arr)
+                    List<Control> controlList = table.GetControlList();                   
+
+                    foreach (var control in controlList)
                     {
-                        this.Controls.Add(el);
+                        Controls.Add(control);
                     }
                 }
             }
@@ -60,10 +61,7 @@ namespace Yet_another_tool
         protected void context_edit_clic(object sender, EventArgs e)
         {
             MgBox.editState = true;
-            Read_write_xml xml = new Read_write_xml();
-            List<Table> tableList = new List<Table>();
-
-            tableList = xml.Read();
+            List<Table> tableList = MgBox.tableList;
 
             MenuItem item = (sender as MenuItem);
 
@@ -74,7 +72,7 @@ namespace Yet_another_tool
                 case "delete":
                     int itemToRemove = tableList.FindIndex(i => i.Name == owner.SourceControl.Text);
                     tableList.RemoveAt(itemToRemove);
-                    xml.Write(tableList);
+                    Read_write_xml.Write(tableList);
 
                     Application.Restart();
                     break;
