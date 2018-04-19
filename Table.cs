@@ -25,11 +25,11 @@ namespace Yet_another_tool
         
         public List<Control> Create(string name, string number, string id, string path_lxd, string tbl_ip)
         {
-            Name = name;
-            Number = number;
-            Path_lxd = path_lxd;
-            Id = id;
-            Tbl_ip = tbl_ip;
+            this.Name = name;
+            this.Number = number;
+            this.Path_lxd = path_lxd;
+            this.Id = id;
+            this.Tbl_ip = tbl_ip;
 
             Label tbl_name_label = new Label();
             tbl_name_label.Location = new Point(50, MgBox.positionY);
