@@ -17,7 +17,6 @@ namespace Yet_another_tool
 {
     public partial class Create_table : Form
     {
-        Table table = new Table();                                                      // Creating a table object
         List<Table> tableList = MgBox.tableList;                                      // Creating list of tables
 
         Main table_list_form;
@@ -46,7 +45,7 @@ namespace Yet_another_tool
         
         private void tbl_create_Click(object sender, EventArgs e)
         {
-            table.Create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, tbl_ip.Text);
+            Table table = new Table();                                                      // Creating a table object
 
             if (!MgBox.editState)
             {
@@ -61,8 +60,10 @@ namespace Yet_another_tool
                 }
                 else
                 {
-                    MgBox.positionY = 120;
+                    MgBox.positionY = 210;
                 }
+
+                table.Create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, tbl_ip.Text, MgBox.positionY);
 
                 List<Control> controlList = table.GetControlList();                             // Creating new table object and returning list of elements which has to be rendered
 

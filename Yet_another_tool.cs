@@ -35,7 +35,8 @@ namespace Yet_another_tool
                         tableList[i].Number,
                         tableList[i].Id,
                         tableList[i].Path_lxd,
-                        tableList[i].Tbl_ip);
+                        tableList[i].Tbl_ip,
+                        MgBox.positionY);
 
                     List<Control> controlList = table.GetControlList();                   
 
@@ -92,5 +93,30 @@ namespace Yet_another_tool
             create_table.ShowDialog();
         }
 
+        private void search_bar_TextChanged(object sender, EventArgs e)
+        {
+            if (search_bar.Text == "")
+            {
+                search_result.Controls.Clear();
+                MgBox.SearchPosY = 15;
+                return;
+            }
+            Table table = new Table();
+            string number = search_bar.Text;
+
+            List<Table> result = MgBox.tableList.FindAll(i => i.Number == number);
+            for (int i = 0; i < result.Count; i++)
+            {
+
+                table.Create(result[i].Name, result[i].Number, result[i].Id, result[i].Path_lxd, result[i].Tbl_ip, MgBox.SearchPosY);
+                List<Control> controlList = table.GetControlList();
+                
+                foreach (var control in controlList)
+                {
+                    search_result.Controls.Add(control);
+                }
+                MgBox.SearchPosY += 30;
+            }
+        }
     }
 }

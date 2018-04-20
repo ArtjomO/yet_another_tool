@@ -29,7 +29,8 @@ namespace Yet_another_tool
                 return tableList;                                                     // Returns list with tables
             }
 
-            return tableList;                                                         // Returns empty list
+            MgBox.tableList = new List<Table>();
+            return MgBox.tableList;                                                         // Returns empty list
         }
 
         public static void Write(List<Table> list)
