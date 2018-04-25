@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Create_table));
             this.path_lxd = new System.Windows.Forms.Button();
             this.tbl_create = new System.Windows.Forms.Button();
             this.tbl_id = new System.Windows.Forms.TextBox();
@@ -142,6 +143,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Create_table";
             this.Text = "Create table";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Create_table_FormClosing);

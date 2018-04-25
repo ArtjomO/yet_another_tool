@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.label1 = new System.Windows.Forms.Label();
             this.open_crt_tbl = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -94,6 +95,7 @@
             this.Controls.Add(this.open_crt_tbl);
             this.Controls.Add(this.label1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(391, 1200);
             this.MinimumSize = new System.Drawing.Size(391, 580);
             this.Name = "Main";
