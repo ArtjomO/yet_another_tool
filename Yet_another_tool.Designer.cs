@@ -76,6 +76,7 @@
             // 
             // search_result
             // 
+            this.search_result.AutoScroll = true;
             this.search_result.Location = new System.Drawing.Point(17, 68);
             this.search_result.Name = "search_result";
             this.search_result.Size = new System.Drawing.Size(345, 75);

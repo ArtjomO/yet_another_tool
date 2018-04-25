@@ -100,11 +100,16 @@ namespace Yet_another_tool
                 search_result.Controls.Clear();
                 MgBox.SearchPosY = 15;
                 return;
+            } else
+            {
+                search_result.Controls.Clear();
+                MgBox.SearchPosY = 15;
             }
             Table table = new Table();
             string number = search_bar.Text;
 
-            List<Table> result = MgBox.tableList.FindAll(i => i.Number == number);
+            List<Table> result = MgBox.tableList.FindAll(i => i.Number.Contains(number));
+            
             for (int i = 0; i < result.Count; i++)
             {
 
