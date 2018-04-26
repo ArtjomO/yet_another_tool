@@ -83,7 +83,6 @@ namespace Yet_another_tool
                 tbl_num.Text = "";
                 tbl_id.Text = "";
                 tbl_ip.Text = "";
-
                 path_to_lxd = "";
             }
             else
@@ -95,7 +94,6 @@ namespace Yet_another_tool
                 tableList[tableToEdit].Id = tbl_id.Text;
                 tableList[tableToEdit].Path_lxd = path_to_lxd;
                 tableList[tableToEdit].Tbl_ip = tbl_ip.Text;
-                //MessageBox.Show("New name: " + tableList[tableToEdit].Name);
 
                 Read_write_xml.Write(tableList);
                 Application.Restart();
