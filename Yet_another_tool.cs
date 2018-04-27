@@ -15,11 +15,11 @@ namespace Yet_another_tool
         public Main()
         {
             InitializeComponent();
-            readAndAdd(this);
+            readAndAdd();
         }
 
         // Reading from XML onProgramStart and rendering existing tables in UI
-        public void readAndAdd(Main frm)
+        public void readAndAdd()
         {
             Table table = new Table();
             Read_write_xml.Read();                              // Getting list of tables and store it in Mgbox

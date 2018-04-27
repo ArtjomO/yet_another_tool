@@ -37,7 +37,6 @@ namespace Yet_another_tool
                 tbl_id.Text = tableList[tableToEdit].Id;
                 path_to_lxd = tableList[tableToEdit].Path_lxd;
                 tbl_ip.Text = tableList[tableToEdit].Tbl_ip;
-                //MessageBox.Show("Old name: " + tableList[tableToEdit].name);
             }
         }
         
@@ -89,12 +88,17 @@ namespace Yet_another_tool
             {
                 int tableToEdit = tableList.FindIndex(i => i.Name == MgBox.tableToEdit);
 
-                tableList[tableToEdit].Name = tbl_name.Text;
-                tableList[tableToEdit].Number = tbl_num.Text;
-                tableList[tableToEdit].Id = tbl_id.Text;
+                tableList[tableToEdit].Name = tbl_name.Text.Trim();
+                tableList[tableToEdit].Number = tbl_num.Text.Trim();
+                tableList[tableToEdit].Id = tbl_id.Text.Trim();
                 tableList[tableToEdit].Path_lxd = path_to_lxd;
-                tableList[tableToEdit].Tbl_ip = tbl_ip.Text;
+                tableList[tableToEdit].Tbl_ip = tbl_ip.Text.Trim();
 
+
+                //MgBox.tableList = tableList;
+                //table_list_form.Controls.Clear();
+                //MgBox.positionY = 210;
+                //table_list_form.readAndAdd();
                 Read_write_xml.Write(tableList);
                 Application.Restart();
             }
