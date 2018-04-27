@@ -33,14 +33,14 @@
             this.open_crt_tbl = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.search_bar = new System.Windows.Forms.TextBox();
-            this.search_result = new System.Windows.Forms.Panel();
+            this.tbl_list_panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.label1.Location = new System.Drawing.Point(12, 183);
+            this.label1.Location = new System.Drawing.Point(12, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 26);
             this.label1.TabIndex = 0;
@@ -49,7 +49,7 @@
             // open_crt_tbl
             // 
             this.open_crt_tbl.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.open_crt_tbl.Location = new System.Drawing.Point(288, 156);
+            this.open_crt_tbl.Location = new System.Drawing.Point(288, 65);
             this.open_crt_tbl.Name = "open_crt_tbl";
             this.open_crt_tbl.Size = new System.Drawing.Size(75, 23);
             this.open_crt_tbl.TabIndex = 1;
@@ -75,13 +75,15 @@
             this.search_bar.TabIndex = 3;
             this.search_bar.TextChanged += new System.EventHandler(this.search_bar_TextChanged);
             // 
-            // search_result
+            // tbl_list_panel
             // 
-            this.search_result.AutoScroll = true;
-            this.search_result.Location = new System.Drawing.Point(17, 68);
-            this.search_result.Name = "search_result";
-            this.search_result.Size = new System.Drawing.Size(345, 75);
-            this.search_result.TabIndex = 4;
+            this.tbl_list_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.tbl_list_panel.AutoScroll = true;
+            this.tbl_list_panel.Location = new System.Drawing.Point(17, 94);
+            this.tbl_list_panel.Name = "tbl_list_panel";
+            this.tbl_list_panel.Size = new System.Drawing.Size(346, 436);
+            this.tbl_list_panel.TabIndex = 4;
+            this.tbl_list_panel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.tbl_list_panel_ControlAdded);
             // 
             // Main
             // 
@@ -89,7 +91,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(375, 542);
-            this.Controls.Add(this.search_result);
+            this.Controls.Add(this.tbl_list_panel);
             this.Controls.Add(this.search_bar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.open_crt_tbl);
@@ -100,7 +102,6 @@
             this.MinimumSize = new System.Drawing.Size(391, 580);
             this.Name = "Main";
             this.Text = "Yet another tool";
-            this.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.Main_ControlAdded);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,7 +113,7 @@
         private System.Windows.Forms.Button open_crt_tbl;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox search_bar;
-        private System.Windows.Forms.Panel search_result;
+        private System.Windows.Forms.Panel tbl_list_panel;
     }
 }
 

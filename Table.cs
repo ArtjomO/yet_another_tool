@@ -39,19 +39,19 @@ namespace Yet_another_tool
         public List<Control> GetControlList()
         {
             Label tbl_name_label = new Label();
-            tbl_name_label.Location = new Point(120, PosY);
+            tbl_name_label.Location = new Point(107, PosY);
             tbl_name_label.Text = Name;
             tbl_name_label.Name = "table_name";
             tbl_name_label.AutoSize = true;
             
             Label tbl_number_label = new Label();
-            tbl_number_label.Location = new Point(75, PosY);
+            tbl_number_label.Location = new Point(62, PosY);
             tbl_number_label.Text = Number;
             tbl_number_label.AutoSize = true;
 
             Button tbl_open_btn = new Button();
             tbl_open_btn.Font = new Font("Microsoft Sans Serif", 7.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-            tbl_open_btn.Location = new Point(13, PosY - 3);
+            tbl_open_btn.Location = new Point(0, PosY - 3);
             tbl_open_btn.Size = new Size(55, 20);
 
             tbl_open_btn.Text = "Open";

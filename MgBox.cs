@@ -8,7 +8,7 @@ namespace Yet_another_tool
 {
     public static class MgBox
     {
-        public static int positionY = 190;
+        public static int positionY = 10;
         
         public static bool editState = false;
 

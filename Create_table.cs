@@ -59,7 +59,7 @@ namespace Yet_another_tool
                 }
                 else
                 {
-                    MgBox.positionY = 210;
+                    MgBox.positionY = 100;
                 }
 
                 table.Create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, tbl_ip.Text, MgBox.positionY);
@@ -70,10 +70,12 @@ namespace Yet_another_tool
 
                 Read_write_xml.Write(tableList);                                                           // Writing new XML list
 
-                foreach (var control in controlList)                                                         // Rendering tables in Main form UI
-                {
-                    table_list_form.Controls.Add(control);
-                }
+                table_list_form.readAndAdd();
+
+                //foreach (var control in controlList)                                                         // Rendering tables in Main form UI
+                //{
+                //    table_list_form.Controls.Add(control);
+                //}
 
                 MessageBox.Show("Table is added: " + table.Name + " : " + table.Number);
 
@@ -98,9 +100,10 @@ namespace Yet_another_tool
                 //MgBox.tableList = tableList;
                 //table_list_form.Controls.Clear();
                 //MgBox.positionY = 210;
-                //table_list_form.readAndAdd();
                 Read_write_xml.Write(tableList);
-                Application.Restart();
+                table_list_form.readAndAdd();
+                this.Close();
+                //Application.Restart();
             }
         }
 

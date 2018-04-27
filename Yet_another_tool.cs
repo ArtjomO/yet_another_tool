@@ -19,17 +19,19 @@ namespace Yet_another_tool
         }
 
         // Reading from XML onProgramStart and rendering existing tables in UI
-        public void readAndAdd()
+        public void readAndAdd(List<Table> list = null)
         {
             Table table = new Table();
             Read_write_xml.Read();                              // Getting list of tables and store it in Mgbox
-            List<Table> tableList = MgBox.tableList;
+            MgBox.positionY = 10;
+            List<Table> tableList = list ?? MgBox.tableList;
+
+            tbl_list_panel.Controls.Clear();
 
             if (tableList.Any())
             {
             for (int i = 0; i < tableList.Count; i++)           // If list is not emty - loop trough list and render each table in UI
                 {
-                    MgBox.positionY += 30;
                     table.Create(
                         tableList[i].Name,
                         tableList[i].Number,
@@ -42,13 +44,15 @@ namespace Yet_another_tool
 
                     foreach (var control in controlList)
                     {
-                        Controls.Add(control);
+                        tbl_list_panel.Controls.Add(control);
                     }
+
+                    MgBox.positionY += 30;
                 }
             }
         }
 
-        private void Main_ControlAdded(object sender, ControlEventArgs e)
+        private void tbl_list_panel_ControlAdded(object sender, ControlEventArgs e)
         {
             if (e.Control.Name == "table_name")
             {
@@ -61,7 +65,6 @@ namespace Yet_another_tool
 
         protected void context_edit_clic(object sender, EventArgs e)
         {
-            MgBox.editState = true;
             List<Table> tableList = MgBox.tableList;
 
             MenuItem item = (sender as MenuItem);
@@ -75,9 +78,11 @@ namespace Yet_another_tool
                     tableList.RemoveAt(itemToRemove);
                     Read_write_xml.Write(tableList);
 
-                    Application.Restart();
+                    readAndAdd();
+                    //Application.Restart();
                     break;
                 case "edit":
+                    MgBox.editState = true;
                     MgBox.tableToEdit = tableList.Find(i => i.Name == owner.SourceControl.Text).Name;
 
                     Create_table create_table = new Create_table(this);     // Initializing Create_table form and passing this form "designer?!?" as a parameter
@@ -97,31 +102,34 @@ namespace Yet_another_tool
         {
             if (search_bar.Text == "")
             {
-                search_result.Controls.Clear();
-                MgBox.SearchPosY = 15;
+                //MgBox.positionY = 10;
+                //tbl_list_panel.Controls.Clear();
+                readAndAdd();
                 return;
             } else
             {
-                search_result.Controls.Clear();
-                MgBox.SearchPosY = 15;
+                tbl_list_panel.Controls.Clear();
+                MgBox.positionY = 10;                   /////////////////
             }
             Table table = new Table();
-            string number = search_bar.Text;
+            string numberToSearch = search_bar.Text;
 
-            List<Table> result = MgBox.tableList.FindAll(i => i.Number.Contains(number));
-            
-            for (int i = 0; i < result.Count; i++)
-            {
+            List<Table> result = MgBox.tableList.FindAll(i => i.Number.Contains(numberToSearch));
 
-                table.Create(result[i].Name, result[i].Number, result[i].Id, result[i].Path_lxd, result[i].Tbl_ip, MgBox.SearchPosY);
-                List<Control> controlList = table.GetControlList();
+            readAndAdd(result);
+
+            //for (int i = 0; i < result.Count; i++)
+            //{
+
+            //    table.Create(result[i].Name, result[i].Number, result[i].Id, result[i].Path_lxd, result[i].Tbl_ip, MgBox.positionY);
+            //    List<Control> controlList = table.GetControlList();
                 
-                foreach (var control in controlList)
-                {
-                    search_result.Controls.Add(control);
-                }
-                MgBox.SearchPosY += 30;
-            }
+            //    foreach (var control in controlList)
+            //    {
+            //        tbl_list_panel.Controls.Add(control);
+            //    }
+            //    MgBox.positionY += 30;
+            //}
         }
     }
 }
