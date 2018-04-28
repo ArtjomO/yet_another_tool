@@ -66,7 +66,7 @@ namespace Yet_another_tool
 
                 table.Create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, tbl_ip.Text, MgBox.positionY);
 
-                List<Control> controlList = table.GetControlList();                             // Creating new table object and returning list of elements which has to be rendered
+                Panel tblPanel = table.GetPanel();                             // Creating new table object and returning list of elements which has to be rendered
 
                 tableList.Add(table);                                                           // Adding created table to table list
 

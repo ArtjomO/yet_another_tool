@@ -36,35 +36,43 @@ namespace Yet_another_tool
             Process.Start("vnc://" + Tbl_ip);
         }
         
-        public List<Control> GetControlList()
+        public Panel GetPanel()
         {
             Label tbl_name_label = new Label();
-            tbl_name_label.Location = new Point(107, PosY);
+            tbl_name_label.Location = new Point(107, 3);
             tbl_name_label.Text = Name;
             tbl_name_label.Name = "table_name";
             tbl_name_label.AutoSize = true;
             
             Label tbl_number_label = new Label();
-            tbl_number_label.Location = new Point(62, PosY);
+            tbl_number_label.Location = new Point(62, 3);
             tbl_number_label.Text = Number;
             tbl_number_label.AutoSize = true;
 
             Button tbl_open_btn = new Button();
             tbl_open_btn.Font = new Font("Microsoft Sans Serif", 7.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-            tbl_open_btn.Location = new Point(0, PosY - 3);
+            tbl_open_btn.Location = new Point(0, 0);
             tbl_open_btn.Size = new Size(55, 20);
-
             tbl_open_btn.Text = "Open";
             tbl_open_btn.TextAlign = ContentAlignment.TopCenter;
             tbl_open_btn.UseVisualStyleBackColor = false;
             tbl_open_btn.Click += new EventHandler(Btn_handler_Click);
 
-            List<Control> controlList = new List<Control>();
-            controlList.Add(tbl_name_label);
-            controlList.Add(tbl_number_label);
-            controlList.Add(tbl_open_btn);
+            Panel singleTbPanel = new Panel();
+            singleTbPanel.Location = new Point(5, PosY);
+            singleTbPanel.Size = new Size(200, 20);
 
-            return controlList;
+            singleTbPanel.Controls.Add(tbl_name_label);
+            singleTbPanel.Controls.Add(tbl_number_label);
+            singleTbPanel.Controls.Add(tbl_open_btn);
+            //List<Control> controlList = new List<Control>();
+            //controlList.Add(tbl_name_label);
+            //controlList.Add(tbl_number_label);
+            //controlList.Add(tbl_open_btn);
+
+
+
+            return singleTbPanel;
         }
     }    
 }

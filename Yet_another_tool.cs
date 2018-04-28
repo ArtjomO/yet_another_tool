@@ -21,6 +21,9 @@ namespace Yet_another_tool
         // Reading from XML onProgramStart and rendering existing tables in UI
         public void readAndAdd(List<Table> list = null, Panel overlay = null)
         {
+            tbl_list_panel.Visible = true;
+            pnl_search_overlay.Visible = false;
+
             Table table = new Table();
             Read_write_xml.Read();                              // Getting list of tables and store it in Mgbox
             MgBox.positionY = 10;
@@ -47,12 +50,7 @@ namespace Yet_another_tool
                         tableList[i].Tbl_ip,
                         MgBox.positionY);
 
-                    List<Control> controlList = table.GetControlList();                   
-
-                    foreach (var control in controlList)
-                    {
-                        placeToRender.Controls.Add(control);
-                    }
+                    placeToRender.Controls.Add(table.GetPanel());
 
                     MgBox.positionY += 30;
                 }
@@ -109,13 +107,9 @@ namespace Yet_another_tool
         {
             if (search_bar.Text == "")
             {
-                //MgBox.positionY = 10;
-                //tbl_list_panel.Controls.Clear();
-
+                readAndAdd();
                 tbl_list_panel.Visible = true;
                 pnl_search_overlay.Visible = false;
-
-                //readAndAdd();
                 return;
             } else
             {
@@ -123,27 +117,8 @@ namespace Yet_another_tool
 
                 List<Table> result = MgBox.tableList.FindAll(i => i.Number.Contains(numberToSearch));
 
-                readAndAdd(result, pnl_search_overlay);
-
-                //tbl_list_panel.Controls.Clear();
-                //MgBox.positionY = 10;                   /////////////////
+                readAndAdd(result, null); //pnl_search_overlay
             }
-            //Table table = new Table();
-
-            
-
-            //for (int i = 0; i < result.Count; i++)
-            //{
-
-            //    table.Create(result[i].Name, result[i].Number, result[i].Id, result[i].Path_lxd, result[i].Tbl_ip, MgBox.positionY);
-            //    List<Control> controlList = table.GetControlList();
-                
-            //    foreach (var control in controlList)
-            //    {
-            //        tbl_list_panel.Controls.Add(control);
-            //    }
-            //    MgBox.positionY += 30;
-            //}
         }
     }
 }
