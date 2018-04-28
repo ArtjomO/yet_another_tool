@@ -19,14 +19,21 @@ namespace Yet_another_tool
         }
 
         // Reading from XML onProgramStart and rendering existing tables in UI
-        public void readAndAdd(List<Table> list = null)
+        public void readAndAdd(List<Table> list = null, Panel overlay = null)
         {
             Table table = new Table();
             Read_write_xml.Read();                              // Getting list of tables and store it in Mgbox
             MgBox.positionY = 10;
             List<Table> tableList = list ?? MgBox.tableList;
+            Panel placeToRender = overlay ?? tbl_list_panel;
 
-            tbl_list_panel.Controls.Clear();
+            if (placeToRender == overlay)
+            {
+                tbl_list_panel.Visible = false;
+                overlay.Visible = true;
+            }
+
+            placeToRender.Controls.Clear();
 
             if (tableList.Any())
             {
@@ -44,7 +51,7 @@ namespace Yet_another_tool
 
                     foreach (var control in controlList)
                     {
-                        tbl_list_panel.Controls.Add(control);
+                        placeToRender.Controls.Add(control);
                     }
 
                     MgBox.positionY += 30;
@@ -104,7 +111,11 @@ namespace Yet_another_tool
             {
                 //MgBox.positionY = 10;
                 //tbl_list_panel.Controls.Clear();
-                readAndAdd();
+
+                tbl_list_panel.Visible = true;
+                pnl_search_overlay.Visible = false;
+
+                //readAndAdd();
                 return;
             } else
             {
@@ -112,7 +123,7 @@ namespace Yet_another_tool
 
                 List<Table> result = MgBox.tableList.FindAll(i => i.Number.Contains(numberToSearch));
 
-                readAndAdd(result);
+                readAndAdd(result, pnl_search_overlay);
 
                 //tbl_list_panel.Controls.Clear();
                 //MgBox.positionY = 10;                   /////////////////

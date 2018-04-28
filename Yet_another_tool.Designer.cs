@@ -34,6 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.search_bar = new System.Windows.Forms.TextBox();
             this.tbl_list_panel = new System.Windows.Forms.Panel();
+            this.pnl_search_overlay = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label1
@@ -85,12 +86,23 @@
             this.tbl_list_panel.TabIndex = 4;
             this.tbl_list_panel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.tbl_list_panel_ControlAdded);
             // 
+            // pnl_search_overlay
+            // 
+            this.pnl_search_overlay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pnl_search_overlay.AutoScroll = true;
+            this.pnl_search_overlay.Location = new System.Drawing.Point(17, 94);
+            this.pnl_search_overlay.Name = "pnl_search_overlay";
+            this.pnl_search_overlay.Size = new System.Drawing.Size(346, 436);
+            this.pnl_search_overlay.TabIndex = 5;
+            this.pnl_search_overlay.Visible = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(375, 542);
+            this.Controls.Add(this.pnl_search_overlay);
             this.Controls.Add(this.tbl_list_panel);
             this.Controls.Add(this.search_bar);
             this.Controls.Add(this.label2);
@@ -114,6 +126,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox search_bar;
         private System.Windows.Forms.Panel tbl_list_panel;
+        private System.Windows.Forms.Panel pnl_search_overlay;
     }
 }
 
