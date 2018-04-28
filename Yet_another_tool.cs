@@ -108,15 +108,18 @@ namespace Yet_another_tool
                 return;
             } else
             {
-                tbl_list_panel.Controls.Clear();
-                MgBox.positionY = 10;                   /////////////////
+                string numberToSearch = search_bar.Text;
+
+                List<Table> result = MgBox.tableList.FindAll(i => i.Number.Contains(numberToSearch));
+
+                readAndAdd(result);
+
+                //tbl_list_panel.Controls.Clear();
+                //MgBox.positionY = 10;                   /////////////////
             }
-            Table table = new Table();
-            string numberToSearch = search_bar.Text;
+            //Table table = new Table();
 
-            List<Table> result = MgBox.tableList.FindAll(i => i.Number.Contains(numberToSearch));
-
-            readAndAdd(result);
+            
 
             //for (int i = 0; i < result.Count; i++)
             //{

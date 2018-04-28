@@ -53,14 +53,16 @@ namespace Yet_another_tool
                 //    return;
                 //}
 
-                if (tableList.Any())     // Checking if list is empty or not, Y position depends on it
-                {
-                    MgBox.positionY += 30;
-                }
-                else
-                {
-                    MgBox.positionY = 100;
-                }
+                //if (tableList.Any())     // Checking if list is empty or not, Y position depends on it
+                //{
+                //    MgBox.positionY += 30;
+                //}
+                //else
+                //{
+                //    MgBox.positionY = 10;
+                //}
+
+                MgBox.positionY = tableList.Any() ? MgBox.positionY += 30 : MgBox.positionY = 10;
 
                 table.Create(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd, tbl_ip.Text, MgBox.positionY);
 
