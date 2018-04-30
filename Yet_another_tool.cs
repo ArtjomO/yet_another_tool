@@ -21,9 +21,6 @@ namespace Yet_another_tool
         // Reading from XML onProgramStart and rendering existing tables in UI
         public void readAndAdd(List<Table> list = null, Panel overlay = null)
         {
-            tbl_list_panel.Visible = true;
-            pnl_search_overlay.Visible = false;
-
             Table table = new Table();
             Read_write_xml.Read();                              // Getting list of tables and store it in Mgbox
             MgBox.positionY = 10;
@@ -59,13 +56,14 @@ namespace Yet_another_tool
 
         private void tbl_list_panel_ControlAdded(object sender, ControlEventArgs e)
         {
-            if (e.Control.Name == "table_name")
-            {
+
+            string name = "table_name";
+            Control label = e.Control.Controls.Find(name, true)[0];
+
                 ContextMenu tbl_context = new ContextMenu();
                 tbl_context.MenuItems.Add("edit", new EventHandler(context_edit_clic));
                 tbl_context.MenuItems.Add("delete", new EventHandler(context_edit_clic));
-                e.Control.ContextMenu = tbl_context;
-            }
+                label.ContextMenu = tbl_context;
         }
 
         protected void context_edit_clic(object sender, EventArgs e)
@@ -84,7 +82,6 @@ namespace Yet_another_tool
                     Read_write_xml.Write(tableList);
 
                     readAndAdd();
-                    //Application.Restart();
                     break;
                 case "edit":
                     MgBox.editState = true;
@@ -107,7 +104,6 @@ namespace Yet_another_tool
         {
             if (search_bar.Text == "")
             {
-                readAndAdd();
                 tbl_list_panel.Visible = true;
                 pnl_search_overlay.Visible = false;
                 return;
@@ -117,7 +113,7 @@ namespace Yet_another_tool
 
                 List<Table> result = MgBox.tableList.FindAll(i => i.Number.Contains(numberToSearch));
 
-                readAndAdd(result, null); //pnl_search_overlay
+                readAndAdd(result, pnl_search_overlay);
             }
         }
     }

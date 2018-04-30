@@ -74,11 +74,6 @@ namespace Yet_another_tool
 
                 table_list_form.readAndAdd();
 
-                //foreach (var control in controlList)                                                         // Rendering tables in Main form UI
-                //{
-                //    table_list_form.Controls.Add(control);
-                //}
-
                 MessageBox.Show("Table is added: " + table.Name + " : " + table.Number);
 
                 // Emty the textboxes
@@ -98,14 +93,9 @@ namespace Yet_another_tool
                 tableList[tableToEdit].Path_lxd = path_to_lxd;
                 tableList[tableToEdit].Tbl_ip = tbl_ip.Text.Trim();
 
-
-                //MgBox.tableList = tableList;
-                //table_list_form.Controls.Clear();
-                //MgBox.positionY = 210;
                 Read_write_xml.Write(tableList);
                 table_list_form.readAndAdd();
                 this.Close();
-                //Application.Restart();
             }
         }
 
