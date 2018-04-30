@@ -48,19 +48,10 @@ namespace Yet_another_tool
 
             if (!MgBox.editState)
             {
-                //if (!validate(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd))           // This validator is dumb but, oh well..
-                //{                                                                               // 
-                //    return;
-                //}
-
-                //if (tableList.Any())     // Checking if list is empty or not, Y position depends on it
-                //{
-                //    MgBox.positionY += 30;
-                //}
-                //else
-                //{
-                //    MgBox.positionY = 10;
-                //}
+                if (!validate(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd))           // This validator is dumb but, oh well..
+                {                                                                               // 
+                    return;
+                }
 
                 MgBox.positionY = tableList.Any() ? MgBox.positionY += 30 : MgBox.positionY = 10;
 
@@ -70,7 +61,7 @@ namespace Yet_another_tool
 
                 tableList.Add(table);                                                           // Adding created table to table list
 
-                Read_write_xml.Write(tableList);                                                           // Writing new XML list
+                Read_write_xml.Write(tableList);     //, table.Number + " added", true                                                      // Writing new XML list
 
                 table_list_form.readAndAdd();
 
@@ -93,7 +84,7 @@ namespace Yet_another_tool
                 tableList[tableToEdit].Path_lxd = path_to_lxd;
                 tableList[tableToEdit].Tbl_ip = tbl_ip.Text.Trim();
 
-                Read_write_xml.Write(tableList);
+                Read_write_xml.Write(tableList); //, tbl_num.Text.Trim() + " edited", true
                 table_list_form.readAndAdd();
                 this.Close();
             }

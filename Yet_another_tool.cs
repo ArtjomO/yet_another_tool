@@ -79,7 +79,7 @@ namespace Yet_another_tool
                 case "delete":
                     int itemToRemove = tableList.FindIndex(i => i.Name == owner.SourceControl.Text);
                     tableList.RemoveAt(itemToRemove);
-                    Read_write_xml.Write(tableList);
+                    Read_write_xml.Write(tableList); //, "table removed", true
 
                     readAndAdd();
                     break;
