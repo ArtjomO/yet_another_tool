@@ -82,7 +82,7 @@
             this.tbl_list_panel.AutoScroll = true;
             this.tbl_list_panel.Location = new System.Drawing.Point(17, 94);
             this.tbl_list_panel.Name = "tbl_list_panel";
-            this.tbl_list_panel.Size = new System.Drawing.Size(346, 436);
+            this.tbl_list_panel.Size = new System.Drawing.Size(346, 459);
             this.tbl_list_panel.TabIndex = 4;
             this.tbl_list_panel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.tbl_list_panel_ControlAdded);
             // 
@@ -92,16 +92,17 @@
             this.pnl_search_overlay.AutoScroll = true;
             this.pnl_search_overlay.Location = new System.Drawing.Point(17, 94);
             this.pnl_search_overlay.Name = "pnl_search_overlay";
-            this.pnl_search_overlay.Size = new System.Drawing.Size(346, 436);
+            this.pnl_search_overlay.Size = new System.Drawing.Size(346, 459);
             this.pnl_search_overlay.TabIndex = 5;
             this.pnl_search_overlay.Visible = false;
+            this.pnl_search_overlay.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.tbl_list_panel_ControlAdded);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(375, 542);
+            this.ClientSize = new System.Drawing.Size(375, 555);
             this.Controls.Add(this.pnl_search_overlay);
             this.Controls.Add(this.tbl_list_panel);
             this.Controls.Add(this.search_bar);

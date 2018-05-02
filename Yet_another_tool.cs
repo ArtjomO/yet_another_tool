@@ -81,6 +81,12 @@ namespace Yet_another_tool
                     tableList.RemoveAt(itemToRemove);
                     Read_write_xml.Write(tableList); //, "table removed", true
 
+                    if (pnl_search_overlay.Visible == true)
+                    {
+                        List<Table> result = MgBox.tableList.FindAll(i => i.Number.Contains(search_bar.Text));
+                        readAndAdd(result, pnl_search_overlay);
+                    }
+
                     readAndAdd();
                     break;
                 case "edit":

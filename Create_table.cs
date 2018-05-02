@@ -85,8 +85,9 @@ namespace Yet_another_tool
                 tableList[tableToEdit].Tbl_ip = tbl_ip.Text.Trim();
 
                 Read_write_xml.Write(tableList); //, tbl_num.Text.Trim() + " edited", true
-                table_list_form.readAndAdd();
+
                 this.Close();
+                table_list_form.readAndAdd();
             }
         }
 
@@ -97,7 +98,7 @@ namespace Yet_another_tool
                 if (DialogResult.OK == path.ShowDialog())
                 {
                     path_to_lxd = path.FileName;
-                    MessageBox.Show(path_to_lxd);
+                    //MessageBox.Show(path_to_lxd);
                 }
             }
         }

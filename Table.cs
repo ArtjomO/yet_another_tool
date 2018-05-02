@@ -60,17 +60,11 @@ namespace Yet_another_tool
 
             Panel singleTbPanel = new Panel();
             singleTbPanel.Location = new Point(5, PosY);
-            singleTbPanel.Size = new Size(200, 20);
+            singleTbPanel.Size = new Size(320, 20);
 
             singleTbPanel.Controls.Add(tbl_name_label);
             singleTbPanel.Controls.Add(tbl_number_label);
             singleTbPanel.Controls.Add(tbl_open_btn);
-            //List<Control> controlList = new List<Control>();
-            //controlList.Add(tbl_name_label);
-            //controlList.Add(tbl_number_label);
-            //controlList.Add(tbl_open_btn);
-
-
 
             return singleTbPanel;
         }
