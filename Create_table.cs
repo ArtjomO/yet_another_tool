@@ -76,13 +76,17 @@ namespace Yet_another_tool
             }
             else
             {
-                int tableToEdit = tableList.FindIndex(i => i.Name == MgBox.tableToEdit);
+                int tableToEditIndex = tableList.FindIndex(i => i.Name == MgBox.tableToEdit);
 
-                tableList[tableToEdit].Name = tbl_name.Text.Trim();
-                tableList[tableToEdit].Number = tbl_num.Text.Trim();
-                tableList[tableToEdit].Id = tbl_id.Text.Trim();
-                tableList[tableToEdit].Path_lxd = path_to_lxd;
-                tableList[tableToEdit].Tbl_ip = tbl_ip.Text.Trim();
+                Table tableObj = tableList[tableToEditIndex];
+
+                tableObj.Name = tbl_name.Text.Trim();
+                tableObj.Number = tbl_num.Text.Trim();
+                tableObj.Id = tbl_id.Text.Trim();
+                tableObj.Path_lxd = path_to_lxd;
+                tableObj.Tbl_ip = tbl_ip.Text.Trim();
+
+                tableList[tableToEditIndex] = tableObj;
 
                 Read_write_xml.Write(tableList); //, tbl_num.Text.Trim() + " edited", true
 

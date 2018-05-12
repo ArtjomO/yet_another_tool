@@ -39,12 +39,13 @@ namespace Yet_another_tool
             {
             for (int i = 0; i < tableList.Count; i++)           // If list is not emty - loop trough list and render each table in UI
                 {
+                    table = tableList[i];
                     table.Create(
-                        tableList[i].Name,
-                        tableList[i].Number,
-                        tableList[i].Id,
-                        tableList[i].Path_lxd,
-                        tableList[i].Tbl_ip,
+                        table.Name,
+                        table.Number,
+                        table.Id,
+                        table.Path_lxd,
+                        table.Tbl_ip,
                         MgBox.positionY);
 
                     placeToRender.Controls.Add(table.GetPanel());

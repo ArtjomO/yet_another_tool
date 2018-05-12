@@ -13,7 +13,7 @@ using System.Diagnostics;
 
 namespace Yet_another_tool
 {
-    public class Table
+    public struct Table
     {
         public string Name, Number, Path_lxd, Id, Tbl_ip;
 
@@ -30,7 +30,7 @@ namespace Yet_another_tool
             PosY = posY;
         }
 
-        protected void Btn_handler_Click(object sender, EventArgs e)
+        public void Btn_handler_Click(object sender, EventArgs e)
         {
             Process.Start(Path_lxd);
             Process.Start("vnc://" + Tbl_ip);
