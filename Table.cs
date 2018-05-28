@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Serialization;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Reflection;
+using System.IO;
 using System.Diagnostics;
-
 
 
 namespace Yet_another_tool
@@ -29,11 +30,33 @@ namespace Yet_another_tool
             Tbl_ip = tbl_ip.Trim();
             PosY = posY;
         }
-
         public void Btn_handler_Click(object sender, EventArgs e)
         {
-            Process.Start(Path_lxd);
-            Process.Start("vnc://" + Tbl_ip);
+            try
+            {
+                //Process.Start("Path_lxd");
+                Process.Start("lxd\\" + Number + ".lxd");
+            }
+            catch (Exception ex )
+            {
+                MessageBox.Show(ex.Message + " no Path_lxd");
+            }
+            
+            try
+            {
+                if (Tbl_ip.Count() > 0)
+                {
+                    Process.Start("vnc://" + Tbl_ip);
+                }
+                else
+                {
+                    MessageBox.Show("Table IP is not specified!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " no VNC");
+            }
         }
         
         public Panel GetPanel()
@@ -43,7 +66,8 @@ namespace Yet_another_tool
             tbl_name_label.Text = Name;
             tbl_name_label.Name = "table_name";
             tbl_name_label.AutoSize = true;
-            
+            tbl_name_label.ForeColor = Tbl_ip == "" || !(File.Exists("lxd\\" + Number + ".lxd")) ? Color.Red : Color.Black;
+
             Label tbl_number_label = new Label();
             tbl_number_label.Location = new Point(62, 3);
             tbl_number_label.Text = Number;
