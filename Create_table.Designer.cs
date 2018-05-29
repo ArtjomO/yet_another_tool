@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Create_table));
-            this.path_lxd = new System.Windows.Forms.Button();
+            //this.path_lxd = new System.Windows.Forms.Button();
             this.tbl_create = new System.Windows.Forms.Button();
             this.tbl_id = new System.Windows.Forms.TextBox();
             this.tbl_num = new System.Windows.Forms.TextBox();
@@ -43,16 +43,16 @@
             // 
             // path_lxd
             // 
-            this.path_lxd.AccessibleDescription = "Path to lxd file with current table number";
-            this.path_lxd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.path_lxd.Location = new System.Drawing.Point(202, 41);
-            this.path_lxd.Name = "path_lxd";
-            this.path_lxd.Size = new System.Drawing.Size(68, 20);
-            this.path_lxd.TabIndex = 3;
-            this.path_lxd.Text = "Path to .lxd";
-            this.path_lxd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.path_lxd.UseVisualStyleBackColor = true;
-            this.path_lxd.Click += new System.EventHandler(this.path_lxd_Click);
+            //this.path_lxd.AccessibleDescription = "Path to lxd file with current table number";
+            //this.path_lxd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            //this.path_lxd.Location = new System.Drawing.Point(202, 41);
+            //this.path_lxd.Name = "path_lxd";
+            //this.path_lxd.Size = new System.Drawing.Size(68, 20);
+            //this.path_lxd.TabIndex = 3;
+            //this.path_lxd.Text = "Path to .lxd";
+            //this.path_lxd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            //this.path_lxd.UseVisualStyleBackColor = true;
+            //this.path_lxd.Click += new System.EventHandler(this.path_lxd_Click);
             // 
             // tbl_create
             // 

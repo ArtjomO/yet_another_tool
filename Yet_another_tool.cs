@@ -78,24 +78,43 @@ namespace Yet_another_tool
             switch (item.Text)
             {
                 case "delete":
-                    int itemToRemove = tableList.FindIndex(i => i.Name == owner.SourceControl.Text);
-                    tableList.RemoveAt(itemToRemove);
-                    Read_write_xml.Write(tableList); //, "table removed", true
-
-                    if (pnl_search_overlay.Visible == true)
+                    var confirmDelete = MessageBox.Show("Are you sure to delete this table?", "Confirm Delete!!", MessageBoxButtons.OKCancel);
+                    if (confirmDelete == DialogResult.OK)
                     {
-                        List<Table> result = MgBox.tableList.FindAll(i => i.Number.Contains(search_bar.Text));
-                        readAndAdd(result, pnl_search_overlay);
+                        int itemToRemove = tableList.FindIndex(i => i.Name == owner.SourceControl.Text);
+                        tableList.RemoveAt(itemToRemove);
+                        Read_write_xml.Write(tableList, "table removed", true); // Write with backup
+                        if (pnl_search_overlay.Visible == true)
+                        {
+                            List<Table> result = MgBox.tableList.FindAll(i => i.Number.Contains(search_bar.Text));
+                            readAndAdd(result, pnl_search_overlay);
+                        }
+
+                        readAndAdd();
+                    }
+                    else
+                    {
+                        return;
                     }
 
-                    readAndAdd();
                     break;
                 case "edit":
-                    MgBox.editState = true;
-                    MgBox.tableToEdit = tableList.Find(i => i.Name == owner.SourceControl.Text).Name;
+                    string num = tableList.Find(i => i.Name == owner.SourceControl.Text).Number;
 
-                    Create_table create_table = new Create_table(this);     // Initializing Create_table form and passing this form "designer?!?" as a parameter
-                    create_table.ShowDialog();
+                    var confirmEdit = MessageBox.Show("Are you sure to edit this table?", "Edit: " + num, MessageBoxButtons.OKCancel);
+                    if (confirmEdit == DialogResult.OK)
+                    {
+                        MgBox.editState = true;
+                        MgBox.tableToEdit = tableList.Find(i => i.Name == owner.SourceControl.Text).Name;
+
+                        Create_table create_table = new Create_table(this);     // Initializing Create_table form and passing this form "designer?!?" as a parameter
+                        create_table.ShowDialog();
+                    }
+                    else
+                    {
+                        return;
+                    }
+
                     break;
             }
         }

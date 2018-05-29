@@ -48,7 +48,7 @@ namespace Yet_another_tool
 
             if (!MgBox.editState)
             {
-                if (!validate(tbl_name.Text, tbl_num.Text, tbl_id.Text, path_to_lxd))           // This validator is dumb but, oh well..
+                if (!validate(tbl_name.Text, tbl_num.Text, tbl_id.Text))   //, path_to_lxd        // This validator is dumb but, oh well..
                 {                                                                               // 
                     return;
                 }
@@ -61,7 +61,7 @@ namespace Yet_another_tool
 
                 tableList.Add(table);                                                           // Adding created table to table list
 
-                Read_write_xml.Write(tableList);     //, table.Number + " added", true                                                      // Writing new XML list
+                Read_write_xml.Write(tableList, table.Number + " added", true);     // Writi with backup
 
                 table_list_form.readAndAdd();
 
@@ -76,6 +76,11 @@ namespace Yet_another_tool
             }
             else
             {
+                if (!validate(tbl_name.Text, tbl_num.Text, tbl_id.Text))   //, path_to_lxd        // This validator is dumb but, oh well..
+                {                                                                               // 
+                    return;
+                }
+
                 int tableToEditIndex = tableList.FindIndex(i => i.Name == MgBox.tableToEdit);
 
                 Table tableObj = tableList[tableToEditIndex];
@@ -88,30 +93,30 @@ namespace Yet_another_tool
 
                 tableList[tableToEditIndex] = tableObj;
 
-                Read_write_xml.Write(tableList); //, tbl_num.Text.Trim() + " edited", true
+                Read_write_xml.Write(tableList, tbl_num.Text.Trim() + " edited", true); // W
 
                 this.Close();
                 table_list_form.readAndAdd();
             }
         }
 
-        private void path_lxd_Click(object sender, EventArgs e)                         // Selecting path to .lxd file
-        {
-            using (FileDialog path = new OpenFileDialog())
-            {
-                if (DialogResult.OK == path.ShowDialog())
-                {
-                    path_to_lxd = path.FileName;
-                    //MessageBox.Show(path_to_lxd);
-                }
-            }
-        }
+        //private void path_lxd_Click(object sender, EventArgs e)                         // Selecting path to .lxd file
+        //{
+        //    using (FileDialog path = new OpenFileDialog())
+        //    {
+        //        if (DialogResult.OK == path.ShowDialog())
+        //        {
+        //            path_to_lxd = path.FileName;
+        //            //MessageBox.Show(path_to_lxd);
+        //        }
+        //    }
+        //}
 
-        private bool validate(string name, string number, string id, string path)
+        private bool validate(string name, string number, string id) //, string path
         {
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(number) || string.IsNullOrEmpty(id) || string.IsNullOrEmpty(path) || string.IsNullOrEmpty(tbl_ip.Text))
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(number) || string.IsNullOrEmpty(id) || string.IsNullOrEmpty(tbl_ip.Text)) //string.IsNullOrEmpty(path) ||
             {
-                MessageBox.Show("Every field and Path to lxd must be specified");
+                MessageBox.Show("Every field must be specified! Don't forget about '.lxd' file.");
                 return false;
             }
             else
