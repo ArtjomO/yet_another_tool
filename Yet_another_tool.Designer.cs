@@ -112,9 +112,9 @@
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(391, 1200);
-            this.MinimumSize = new System.Drawing.Size(391, 580);
+            this.MinimumSize = new System.Drawing.Size(391, 173);
             this.Name = "Main";
-            this.Text = "Yet another tool";
+            this.Text = "Time Saver";
             this.ResumeLayout(false);
             this.PerformLayout();
 

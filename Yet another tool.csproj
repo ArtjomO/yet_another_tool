@@ -7,7 +7,7 @@
     <ProjectGuid>{7A2DD548-52E6-44CA-B71C-03E1DE9AEA4D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Yet_another_tool</RootNamespace>
-    <AssemblyName>Yet another tool</AssemblyName>
+    <AssemblyName>Time Saver</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -111,6 +111,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -121,7 +122,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Yet another tool_TemporaryKey.pfx" />
+    <None Include="Time Saver_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
