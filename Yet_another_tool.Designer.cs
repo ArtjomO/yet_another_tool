@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.label1 = new System.Windows.Forms.Label();
             this.open_crt_tbl = new System.Windows.Forms.Button();
@@ -35,6 +36,7 @@
             this.search_bar = new System.Windows.Forms.TextBox();
             this.tbl_list_panel = new System.Windows.Forms.Panel();
             this.pnl_search_overlay = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -64,7 +66,7 @@
             this.label2.Font = new System.Drawing.Font("Calibri", 10.45F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(14, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 17);
+            this.label2.Size = new System.Drawing.Size(78, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Search table";
             // 
@@ -74,6 +76,7 @@
             this.search_bar.Name = "search_bar";
             this.search_bar.Size = new System.Drawing.Size(97, 20);
             this.search_bar.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.search_bar, "name, number, id, ip");
             this.search_bar.TextChanged += new System.EventHandler(this.search_bar_TextChanged);
             // 
             // tbl_list_panel
@@ -128,6 +131,7 @@
         private System.Windows.Forms.TextBox search_bar;
         private System.Windows.Forms.Panel tbl_list_panel;
         private System.Windows.Forms.Panel pnl_search_overlay;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
