@@ -137,8 +137,11 @@ namespace Yet_another_tool
             {
                 string numberToSearch = search_bar.Text;
 
-                // Search table by Number / Name / ID
-                List<Table> result = MgBox.tableList.FindAll(i => i.Number.Contains(numberToSearch) || i.Name.ToUpper().Contains(numberToSearch.ToUpper()) || i.Id.Contains(numberToSearch));
+                // Search table by Number / Name / ID / IP
+                List<Table> result = MgBox.tableList.FindAll(i => i.Number.Contains(numberToSearch) ||
+                                                                  i.Name.ToUpper().Contains(numberToSearch.ToUpper()) ||
+                                                                  i.Id.Contains(numberToSearch) ||
+                                                                  i.Tbl_ip.Contains(numberToSearch));
 
                 readAndAdd(result, pnl_search_overlay);
             }

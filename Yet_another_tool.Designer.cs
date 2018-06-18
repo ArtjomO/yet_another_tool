@@ -66,13 +66,13 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(141, 17);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Search by table number";
+            this.label2.Text = "Search table";
             // 
             // search_bar
             // 
             this.search_bar.Location = new System.Drawing.Point(17, 42);
             this.search_bar.Name = "search_bar";
-            this.search_bar.Size = new System.Drawing.Size(87, 20);
+            this.search_bar.Size = new System.Drawing.Size(97, 20);
             this.search_bar.TabIndex = 3;
             this.search_bar.TextChanged += new System.EventHandler(this.search_bar_TextChanged);
             // 
